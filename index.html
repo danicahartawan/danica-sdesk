@@ -62,6 +62,17 @@ section{padding:80px 0}
 #preview-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;border:none;background:rgba(0,0,0,.07);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#555;z-index:2;line-height:1}
 #preview-close:hover{background:rgba(0,0,0,.13)}
 #preview-frame{flex:1;border:none;width:100%;height:100%}
+.flip-card{margin-bottom:16px;height:340px;cursor:pointer;perspective:1400px;}
+.flip-inner{width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);position:relative;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;top:0;left:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;overflow:hidden;}
+.flip-front{background:#fff;border:1.5px solid rgba(0,0,0,.07);display:flex;align-items:center;gap:20px;padding:18px 22px;transition:transform .15s ease,box-shadow .15s ease;}
+.flip-back{transform:rotateY(180deg);background:#000;}
+.flip-back iframe{width:100%;height:100%;border:none;display:block;}
+.flip-back-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:10px;border:none;background:rgba(255,255,255,.18);color:#fff;cursor:pointer;font-size:15px;z-index:2;display:flex;align-items:center;justify-content:center;}
+.flip-back-close:hover{background:rgba(255,255,255,.32);}
+.flip-hint{font-family:var(--mono);font-size:11px;color:#ccc;margin-top:8px;letter-spacing:.04em;}
+.flip-card:not(.flipped):hover .flip-front{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.08);}
 </style>
 </head>
 <body>
@@ -129,17 +140,41 @@ section{padding:80px 0}
   <div class="divider"></div>
   <section>
     <h2 class="section-title">What's Currently On My Desk ⁕</h2>
-    <div class="other-card" onclick="openPreview('https://drive.google.com/file/d/1QkOBQcga5YYHhY6fGz_dqlocjuex0MJf/view?usp=sharing')" style="cursor:pointer;">
-      <div class="other-thumb"><img src="images/other-work/nudge.png" alt="Nudge"></div>
-      <div class="other-info"><div class="other-name">Nudge - Agentic MacOS Overlay</div><div class="other-meta">UX · AGENTS · EXPERIMENT</div><div class="other-desc">Built a &quot;youtube tutorial on crack&quot; adaptive overlay that guides non-technical users through emerging AI tools in real time.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+    <div class="flip-card" onclick="flipCard(this,'https://drive.google.com/file/d/1QkOBQcga5YYHhY6fGz_dqlocjuex0MJf/preview')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="other-thumb"><img src="images/other-work/nudge.png" alt="Nudge"></div>
+          <div class="other-info"><div class="other-name">Nudge - Agentic MacOS Overlay</div><div class="other-meta">UX · AGENTS · EXPERIMENT</div><div class="other-desc">Built a &quot;youtube tutorial on crack&quot; adaptive overlay that guides non-technical users through emerging AI tools in real time.</div><div class="flip-hint">click to watch demo ↩</div></div>
+        </div>
+        <div class="flip-back">
+          <button class="flip-back-close" onclick="event.stopPropagation();flipCard(this.closest('.flip-card'))">✕</button>
+          <iframe src="" data-src="https://drive.google.com/file/d/1QkOBQcga5YYHhY6fGz_dqlocjuex0MJf/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
-    <div class="other-card" onclick="openPreview('https://drive.google.com/file/d/1sByUK0XOCJxYUuxOLlBN1g7wR4mmwTRr/view?usp=sharing')" style="cursor:pointer;">
-      <div class="other-thumb"><img src="images/other-work/sourcerer.png" alt="Sourcerer"></div>
-      <div class="other-info"><div class="other-name">Sourcerer — CAD Processing &amp; Sourcing System</div><div class="other-meta">CAD · COMPUTATIONAL GEOMETRY · SYSTEMS</div><div class="other-desc">Designed a pipeline that parses CAD models, extracts dimensional and manufacturability features, and links components to ranked supplier datasets.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+    <div class="flip-card" onclick="flipCard(this,'https://drive.google.com/file/d/1sByUK0XOCJxYUuxOLlBN1g7wR4mmwTRr/preview')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="other-thumb"><img src="images/other-work/sourcerer.png" alt="Sourcerer"></div>
+          <div class="other-info"><div class="other-name">Sourcerer — CAD Processing &amp; Sourcing System</div><div class="other-meta">CAD · COMPUTATIONAL GEOMETRY · SYSTEMS</div><div class="other-desc">Designed a pipeline that parses CAD models, extracts dimensional and manufacturability features, and links components to ranked supplier datasets.</div><div class="flip-hint">click to watch demo ↩</div></div>
+        </div>
+        <div class="flip-back">
+          <button class="flip-back-close" onclick="event.stopPropagation();flipCard(this.closest('.flip-card'))">✕</button>
+          <iframe src="" data-src="https://drive.google.com/file/d/1sByUK0XOCJxYUuxOLlBN1g7wR4mmwTRr/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
-    <div class="other-card" onclick="openPreview('https://danicashonorsthesis.replit.app/')" style="cursor:pointer;">
-      <div class="other-thumb"><img src="images/other-work/honors thesis.jpg" alt="Honors Thesis"></div>
-      <div class="other-info"><div class="other-name">Honors Thesis - Representational Alignment</div><div class="other-meta">RESEARCH · COGNITION · ML</div><div class="other-desc">Researching how AI model embeddings align with hierarchical spatial representations in developing human cognition at the Gopnik Lab.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+    <div class="flip-card" onclick="flipCard(this,'https://danicashonorsthesis.replit.app/')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="other-thumb"><img src="images/other-work/honors thesis.jpg" alt="Honors Thesis"></div>
+          <div class="other-info"><div class="other-name">Honors Thesis - Representational Alignment</div><div class="other-meta">RESEARCH · COGNITION · ML</div><div class="other-desc">Researching how AI model embeddings align with hierarchical spatial representations in developing human cognition at the Gopnik Lab.</div><div class="flip-hint">click to explore ↩</div></div>
+        </div>
+        <div class="flip-back">
+          <button class="flip-back-close" onclick="event.stopPropagation();flipCard(this.closest('.flip-card'))">✕</button>
+          <iframe src="" data-src="https://danicashonorsthesis.replit.app/" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
     <div class="other-card">
       <div class="other-thumb"><img src="images/other-work/haas.png" alt="Haas"></div>
@@ -149,9 +184,17 @@ section{padding:80px 0}
   <div class="divider"></div>
   <section>
     <h2 class="section-title">Other Projects ⁕</h2>
-    <div class="other-card" onclick="openPreview('https://drive.google.com/file/d/1rJLTeltm_BvjbyjSrDocT62T9VzIjyJx/view?usp=sharing')" style="cursor:pointer;">
-      <div class="other-thumb"><img src="images/other-work/lucid motors.png" alt="Lucid Motors"></div>
-      <div class="other-info"><div class="other-name">Lucid Motors - Multi-Agent Intelligence System</div><div class="other-meta">AGENTS · SYSTEMS · DEPLOYED</div><div class="other-desc">Led development of Lucid's first multi-agent web intelligence system, turning natural language queries into live portfolio dashboards for internal teams.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+    <div class="flip-card" onclick="flipCard(this,'https://drive.google.com/file/d/1rJLTeltm_BvjbyjSrDocT62T9VzIjyJx/preview')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="other-thumb"><img src="images/other-work/lucid motors.png" alt="Lucid Motors"></div>
+          <div class="other-info"><div class="other-name">Lucid Motors - Multi-Agent Intelligence System</div><div class="other-meta">AGENTS · SYSTEMS · DEPLOYED</div><div class="other-desc">Led development of Lucid's first multi-agent web intelligence system, turning natural language queries into live portfolio dashboards for internal teams.</div><div class="flip-hint">click to watch demo ↩</div></div>
+        </div>
+        <div class="flip-back">
+          <button class="flip-back-close" onclick="event.stopPropagation();flipCard(this.closest('.flip-card'))">✕</button>
+          <iframe src="" data-src="https://drive.google.com/file/d/1rJLTeltm_BvjbyjSrDocT62T9VzIjyJx/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
     <div class="other-card">
       <div class="other-thumb"><img src="images/other-work/toko.png" alt="Toko"></div>
@@ -291,6 +334,18 @@ function setOrganizedMode(){
 
 // Start in messy mode
 setMessyMode();
+
+function flipCard(card, url) {
+  const isFlipping = !card.classList.contains('flipped');
+  card.classList.toggle('flipped');
+  const iframe = card.querySelector('iframe');
+  if (isFlipping && url) {
+    iframe.src = iframe.dataset.src || url;
+  } else {
+    // Brief delay so flip animation completes before killing src
+    setTimeout(() => { iframe.src = ''; }, 400);
+  }
+}
 
 function openPreview(url) {
   let embedUrl = url;
