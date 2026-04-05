@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>danica's desk</title>
+<link rel="icon" href="images/widgets/danicadesk.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fffaf5;--text:#1a1a1a;--mono:'IBM Plex Mono',monospace;--sans:'Manrope',-apple-system,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.6;overflow-x:hidden}
+.hero{position:relative;width:100%;height:100vh;min-height:700px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.hero-center{position:relative;z-index:10;text-align:center;padding:0 20px}
+.hero-name{font-family:"Pinyon Script",cursive;font-weight:400;font-style:normal;font-size:clamp(40px,6vw,72px);color:#2a2a2a;letter-spacing:-1px;line-height:1.1;margin-bottom:20px}
+.hero-subtitle{font-family:var(--mono);font-size:15px;color:#555;letter-spacing:.05em;margin-bottom:6px}
+.hero-subtitle-italic{font-family:var(--mono);font-style:italic;font-size:14px;color:#888;margin-bottom:28px}
+.hero-desc{font-family:var(--mono);font-size:15px;color:#555;max-width:850px;margin:0 auto;line-height:1.7;letter-spacing:.02em}
+.float-obj{position:absolute;pointer-events:none;z-index:2}
+.hero-icons{position:absolute;bottom:65px;left:50%;transform:translateX(-50%);z-index:20;display:flex;gap:12px}
+.hero-icon{min-width:56px;height:56px;padding:0 18px;border-radius:14px;border:1.5px solid rgba(0,0,0,.12);background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-style:italic;color:#1a1a1a;cursor:pointer;transition:all .2s ease}.hero-icon:hover{background:rgba(255,255,255,.95);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.scroll-indicator{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:20;font-size:22px;color:#aaa;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.main-content{max-width:680px;margin:0 auto;padding:0 40px}
+section{padding:80px 0}
+.section-title{font-family:var(--mono);font-size:14px;font-weight:600;color:#1a1a1a;letter-spacing:.02em;margin-bottom:40px}
+.typewriter-dots{display:inline-block;min-width:1.2em;text-align:left}
+.currently-role{font-family:var(--mono);font-size:14px;font-weight:400;color:#1a1a1a;letter-spacing:.02em;margin-top:6px;margin-bottom:40px}
+.cooking-intro{font-family:var(--mono);font-size:14px;color:#555;line-height:1.8}
+.highlight{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:8px;padding:2px 8px;font-family:'Segoe Script',cursive;font-size:18px;color:#2a2a2a;box-shadow:0 1px 6px rgba(0,0,0,.08);vertical-align:middle}
+.highlight img{width:22px;height:22px;border-radius:4px}
+.project-list{display:flex;flex-direction:column;gap:16px;margin-top:10px}
+.project-card{display:flex;align-items:center;gap:20px;background:#fff;border:1.5px solid rgba(0,0,0,.07);border-radius:18px;padding:18px 22px;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
+.project-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.project-thumb{width:64px;height:64px;border-radius:14px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.project-thumb img{width:100%;height:100%;object-fit:cover}
+.project-name{font-family:var(--mono);font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
+.project-desc{font-family:var(--mono);font-size:13px;color:#888}
+.other-card{background:#fff;border:1.5px solid rgba(0,0,0,.07);border-radius:18px;overflow:hidden;margin-bottom:16px;display:flex;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
+.other-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.other-thumb{width:190px;min-height:160px;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f5f5f5;padding:16px}
+.other-thumb img{max-width:100%;max-height:160px;object-fit:contain}
+.other-info{padding:24px;flex:1}
+.other-name{font-family:var(--mono);font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
+.other-meta{font-family:var(--mono);font-size:12px;color:#aaa;margin-bottom:12px}
+.other-desc{font-family:var(--mono);font-size:13px;color:#666;line-height:1.65;margin-bottom:14px}
+.about-section{padding:80px 0 120px}
+.about-text{font-family:var(--mono);font-size:14px;color:#444;line-height:1.85;margin-bottom:18px}
+.about-links{margin-top:32px;font-family:var(--mono);font-size:13px;color:#999}
+.about-links a{color:#555;text-decoration:none}
+.about-links a:hover{text-decoration:underline}
+.divider{height:1px;background:rgba(0,0,0,.06)}
+.cursor-badge{position:fixed;pointer-events:none;z-index:9999;color:#f0c14b;transform:translate(-50%,-150%);display:none;align-items:center;justify-content:center}.cursor-badge svg{display:block}
+@media(max-width:768px){.float-obj{display:none}.hero{padding:80px 20px;height:auto;min-height:100vh}.main-content{padding:0 20px}.other-card{flex-direction:column}.other-thumb{width:100%}}
+</style>
+</head>
+<body>
+<div class="cursor-badge" id="cursorBadge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></div>
+<section class="hero">
+  <!-- Left floating objects -->
+  <img class="float-obj" src="images/hero/painting.png" style="left:30px;top:-120px;width:300px;z-index:1;" alt="">
+  <img class="float-obj" src="images/hero/notebook.png" style="left:50px;top:-150px;width:360px;z-index:2;" alt="">
+  <img class="float-obj" src="images/hero/watch.png" style="left:-60px;top:-20px;width:300px;transform:rotate(-26deg);z-index:3;" alt="">
+  <img class="float-obj" src="images/hero/clip.png" style="left:120px;top:350px;width:200px;transform:rotate(-14deg);" alt="">
+  <img class="float-obj" src="https://framerusercontent.com/images/tQZK8bAxzmm6UcxN8lrkuLrsPTs.png" style="left:256px;top:202px;width:240px;transform:rotate(-14deg);" alt="">
+  <img class="float-obj" src="images/hero/smiski.png" style="left:220px;top:280px;width:260px;transform:rotate(-11deg);" alt="">
+  <img class="float-obj" src="images/hero/ceramic.png" style="left:185px;top:200px;width:240px;" alt="">
+  <!-- Right floating objects -->
+  <img class="float-obj" src="https://framerusercontent.com/images/BMk9tbBUQoj1TbGSpyuzVtpEI.png" style="right:270px;top:50px;width:93px;transform:rotate(13deg);" alt="">
+  <img class="float-obj" src="https://framerusercontent.com/images/pIJQNvKwXzQWb9Be5qUhoITihY.png" style="right:45px;top:0;width:215px;" alt="">
+  <!-- Nudge image -->
+  <img class="float-obj" src="images/hero/newnudge.png" style="right:25px;top:210px;width:320px;" alt="">
+  <!-- Folder widget -->
+  <div class="float-obj" style="right:165px;top:295px;z-index:4;text-align:center;">
+    <img src="https://framerusercontent.com/images/zBTrYExuPA4oelyKSUOT0Jd5Jw.png" style="width:155px;" alt="">
+    <div style="font-family:var(--sans);font-size:11px;color:#666;margin-top:4px;">Final_Final_Final</div>
+  </div>
+  <!-- AirDrop widget -->
+  <div class="float-obj" style="right:95px;top:450px;z-index:5;width:175px;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.15);font-family:var(--sans);">
+    <div style="height:110px;overflow:hidden;"><img src="https://framerusercontent.com/images/QVQeDV5JeNYdEyo4R2DlbzUAw.png" style="width:100%;height:100%;object-fit:cover;" alt=""></div>
+    <div style="padding:10px 14px 6px;background:white;">
+      <div style="font-weight:700;font-size:13px;color:#1a1a1a;margin-bottom:2px;">AirDrop</div>
+      <div style="font-size:11px;color:#888;margin-bottom:10px;">Danica would like to share a photo</div>
+      <div style="display:flex;gap:8px;">
+        <button style="flex:1;padding:6px;border-radius:8px;font-size:12px;font-weight:600;border:none;background:#f0f0f0;color:#555;cursor:pointer;">Decline</button>
+        <button style="flex:1;padding:6px;border-radius:8px;font-size:12px;font-weight:600;border:none;background:transparent;color:#4a90d9;cursor:pointer;">Accept</button>
+      </div>
+    </div>
+  </div>
+  <!-- Pixel tools -->
+  <!-- Center content -->
+  <div class="hero-center">
+    <h1 class="hero-name">Danica's Desk</h1>
+    <p class="hero-subtitle">Cognitive Science and Mechanical Engineering @ UC Berkeley</p>
+    <p class="hero-subtitle-italic">Builder &amp; Researcher</p>
+    <p class="hero-desc">I build adaptive, context-aware systems that respond to how people think and feel, constantly experimenting with new tools, prototyping ideas, and finding ways to make technical products click for real people.</p>
+  </div>
+  <div class="hero-icons">
+    <div class="hero-icon" id="messyBtn" onclick="setMessyMode()" title="Messy Mode">messy</div>
+    <div class="hero-icon" id="organizedBtn" onclick="setOrganizedMode()" title="Organized Mode">clean</div>
+  </div>
+  <div class="scroll-indicator">⌄⌄</div>
+</section>
+
+<div class="main-content">
+  <section style="padding:100px 0 60px;">
+    <h2 class="section-title">Currently<span class="typewriter-dots" id="currentlyDots"></span></h2>
+    <p class="currently-role">Incoming Technical Product Management Intern at NVIDIA</p>
+    <p class="cooking-intro">My work spans neurotechnology, multi-agent systems, and applied AI — from deploying tools at Lucid Motors, leading my product club at Berkeley, to my Honor's Thesis on children/ai spatial representation benchmarks at the Gopnik Lab.</p>
+    <p class="cooking-intro" style="margin-top:10px;">I've collaborated with teams at Berkeley (Haas), Microsoft, Uber Eats, and Second Front Systems, while building independent tools like Nudge and Memory Mirror.</p>
+  </section>
+  <div class="divider"></div>
+  <section>
+    <h2 class="section-title">Some Projects ⁕</h2>
+    <a class="other-card" href="https://drive.google.com/file/d/1rJLTeltm_BvjbyjSrDocT62T9VzIjyJx/view?usp=sharing" target="_blank" rel="noopener">
+      <div class="other-thumb"><img src="images/other-work/lucid motors.png" alt="Lucid Motors"></div>
+      <div class="other-info"><div class="other-name">Lucid Motors - Multi-Agent Intelligence System</div><div class="other-meta">AGENTS · SYSTEMS · DEPLOYED</div><div class="other-desc">Led development of Lucid's first multi-agent web intelligence system, turning natural language queries into live portfolio dashboards for internal teams.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+    </a>
+    <a class="other-card" href="https://drive.google.com/file/d/1QkOBQcga5YYHhY6fGz_dqlocjuex0MJf/view?usp=sharing" target="_blank" rel="noopener">
+      <div class="other-thumb"><img src="images/other-work/nudge.png" alt="Nudge"></div>
+      <div class="other-info"><div class="other-name">Nudge - Agentic MacOS Overlay</div><div class="other-meta">UX · AGENTS · EXPERIMENT</div><div class="other-desc">Built a &quot;youtube tutorial on crack&quot; adaptive overlay that guides non-technical users through emerging AI tools in real time.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+    </a>
+    <a class="other-card" href="https://drive.google.com/file/d/1sByUK0XOCJxYUuxOLlBN1g7wR4mmwTRr/view?usp=sharing" target="_blank" rel="noopener">
+      <div class="other-thumb"><img src="images/other-work/sourcerer.png" alt="Sourcerer"></div>
+      <div class="other-info"><div class="other-name">Sourcerer — CAD Processing &amp; Sourcing System</div><div class="other-meta">CAD · COMPUTATIONAL GEOMETRY · SYSTEMS</div><div class="other-desc">Designed a pipeline that parses CAD models, extracts dimensional and manufacturability features, and links components to ranked supplier datasets.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+    </a>
+    <div class="other-card">
+      <div class="other-thumb"><img src="images/other-work/toko.png" alt="Toko"></div>
+      <div class="other-info"><div class="other-name">Toko - Adaptive Feedback Agent</div><div class="other-meta">AI · HUMAN-SYSTEMS · PRODUCT</div><div class="other-desc">Designed and built an AI assistant that transforms messy qualitative feedback into structured product insights.</div></div>
+    </div>
+    <a class="other-card" href="https://danicashonorsthesis.replit.app/" target="_blank" rel="noopener">
+      <div class="other-thumb"><img src="images/other-work/honors thesis.jpg" alt="Honors Thesis"></div>
+      <div class="other-info"><div class="other-name">Honors Thesis - Representational Alignment</div><div class="other-meta">RESEARCH · COGNITION · ML</div><div class="other-desc">Researching how AI model embeddings align with hierarchical spatial representations in developing human cognition at the Gopnik Lab.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+    </a>
+    <div class="other-card">
+      <div class="other-thumb"><img src="images/other-work/memory mirror.png" alt="Memory Mirror"></div>
+      <div class="other-info"><div class="other-name">Memory Mirror - Continuous EEG Monitoring for Alzheimers</div><div class="other-meta">NEUROTECH · ADAPTIVE SYSTEMS · HACKATHON WIN</div><div class="other-desc">An EEG-based interface that decodes attention and emotional signals in real time to dynamically adjust digital clinical tasks.</div></div>
+    </div>
+    <div class="other-card">
+      <div class="other-thumb"><img src="images/other-work/haas.png" alt="Haas"></div>
+      <div class="other-info"><div class="other-name">Haas - Finance Process Automation System</div><div class="other-meta">SYSTEMS · OPERATIONS · AUTOMATION</div><div class="other-desc">Designed and implemented automation workflows for Haas finance employees, streamlining reimbursement processing, fund tracking, and reporting across 10+ accounts.</div><div class="card-link-icon-row" style="display:flex;gap:12px;align-items:center;margin-top:2px;"><a href="https://drive.google.com/file/d/1keSGJ4Hz4LZdekPd3bD-OobGgUj_uZUn/view?usp=sharing" target="_blank" rel="noopener" class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;" title="Receipt parse demo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a><a href="https://drive.google.com/file/d/1AXjm9l56nGyQpcTnvAhUFdLZLp81ZSRm/view?usp=sharing" target="_blank" rel="noopener" class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;" title="Quicksheets demo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a></div></div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="about-section">
+    <h2 class="section-title">About ⌘</h2>
+    <p class="about-text">Hi, I'm Danica.</p>
+    <p class="about-text">I always thought I'd become a behavior technician — and in a way, I did (fun fact: I'm a licensed behavior technician for autism). I've long been fascinated by how people think, learn, and make decisions, and that curiosity now shapes the systems I build.</p>
+    <p class="about-text">Outside of work, I teach a class at Berkeley on Alzheimer's and neurotechnology (EDSTEM98!), journal obsessively, care a lot about self-growth, attempt to cycle more, collect ceramic mugs and glassware, wander through art spaces, and document my life on Substack and YouTube.</p>
+    <div class="about-links">
+      <a href="https://www.linkedin.com/in/danicahartawan/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;|&nbsp;
+      <a href="https://substack.com/@danicasnotes" target="_blank" rel="noopener">Substack</a> &nbsp;|&nbsp;
+      <a href="https://www.youtube.com/@danicaaurelie2061" target="_blank" rel="noopener">YouTube</a> &nbsp;|&nbsp;
+      E-mail: <a href="mailto:danicahartawan@berkeley.edu">danicahartawan@berkeley.edu</a>
+    </div>
+  </section>
+</div>
+
+<script>
+const badge=document.getElementById('cursorBadge');
+document.addEventListener('mousemove',e=>{badge.style.left=e.clientX+'px';badge.style.top=e.clientY+'px';});
+document.querySelectorAll('.project-card,.other-card').forEach(c=>{
+  c.addEventListener('mouseenter',()=>{badge.style.display='flex';});
+  c.addEventListener('mouseleave',()=>{badge.style.display='none';});
+});
+
+// Typewriter ellipsis for "Currently..."
+const dotsEl=document.getElementById('currentlyDots');
+if(dotsEl){let n=0;setInterval(()=>{dotsEl.textContent='.'.repeat(n);n=(n+1)%4;},400);}
+
+const floats=document.querySelectorAll('.float-obj');
+let mouseX=window.innerWidth/2,mouseY=window.innerHeight/2;
+let isMessyMode=true;
+
+// Store original positions
+const originalPositions=[];
+floats.forEach(el=>{
+  originalPositions.push({
+    left:el.style.left,
+    right:el.style.right,
+    top:el.style.top,
+    width:el.style.width,
+    transform:el.style.transform||''
+  });
+});
+
+document.addEventListener('mousemove',e=>{
+  if(!isMessyMode)return;
+  mouseX=e.clientX;mouseY=e.clientY;
+  const cx=window.innerWidth/2,cy=window.innerHeight/2;
+  const dx=(mouseX-cx)/cx,dy=(mouseY-cy)/cy;
+  floats.forEach((el,i)=>{
+    const d=(i%3+1)*5;
+    el.style.marginLeft=(-dx*d)+'px';
+    el.style.marginTop=(-dy*d)+'px';
+  });
+});
+
+function setMessyMode(){
+  isMessyMode=true;
+  floats.forEach((el,i)=>{
+    el.style.transition='all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    const orig=originalPositions[i];
+
+    // Restore original positions and clear conflicting properties
+    if(orig.left){
+      el.style.left=orig.left;
+      el.style.right='';
+    }else if(orig.right){
+      el.style.right=orig.right;
+      el.style.left='';
+    }
+
+    el.style.top=orig.top;
+    el.style.width=orig.width;
+    el.style.transform=orig.transform;
+    el.style.marginLeft='0px';
+    el.style.marginTop='0px';
+    el.style.opacity='1';
+    el.style.pointerEvents='auto';
+  });
+  document.getElementById('messyBtn').style.background='rgba(255,255,255,.95)';
+  document.getElementById('organizedBtn').style.background='rgba(255,255,255,.7)';
+}
+
+function setOrganizedMode(){
+  isMessyMode=false;
+  // Grid positions for organized layout
+  const gridPositions=[
+    {left:'100px',right:'',top:'150px',width:'200px',transform:'rotate(0deg)'},
+    {left:'350px',right:'',top:'150px',width:'200px',transform:'rotate(0deg)'},
+    {left:'',right:'350px',top:'150px',width:'200px',transform:'rotate(0deg)'},
+    {left:'',right:'100px',top:'150px',width:'200px',transform:'rotate(0deg)'},
+    {left:'100px',right:'',top:'400px',width:'200px',transform:'rotate(0deg)'},
+    {left:'350px',right:'',top:'400px',width:'200px',transform:'rotate(0deg)'},
+    {left:'',right:'350px',top:'400px',width:'200px',transform:'rotate(0deg)'},
+    {left:'',right:'100px',top:'400px',width:'200px',transform:'rotate(0deg)'}
+  ];
+
+  floats.forEach((el,i)=>{
+    el.style.transition='all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    el.style.marginLeft='0px';
+    el.style.marginTop='0px';
+
+    if(i<gridPositions.length){
+      const pos=gridPositions[i];
+      el.style.left=pos.left;
+      el.style.right=pos.right;
+      el.style.top=pos.top;
+      el.style.width=pos.width;
+      el.style.transform=pos.transform;
+    }else{
+      // Hide extra items in organized mode
+      el.style.opacity='0';
+      el.style.pointerEvents='none';
+    }
+  });
+
+  // Reset opacity for visible items
+  floats.forEach((el,i)=>{
+    if(i<gridPositions.length){
+      el.style.opacity='1';
+      el.style.pointerEvents='auto';
+    }
+  });
+
+  document.getElementById('messyBtn').style.background='rgba(255,255,255,.7)';
+  document.getElementById('organizedBtn').style.background='rgba(255,255,255,.95)';
+}
+
+// Start in messy mode
+setMessyMode();
+</script>
+</body>
+</html>
