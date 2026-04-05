@@ -55,6 +55,13 @@ section{padding:80px 0}
 .divider{height:1px;background:rgba(0,0,0,.06)}
 .cursor-badge{position:fixed;pointer-events:none;z-index:9999;color:#f0c14b;transform:translate(-50%,-150%);display:none;align-items:center;justify-content:center}.cursor-badge svg{display:block}
 @media(max-width:768px){.float-obj{display:none}.hero{padding:80px 20px;height:auto;min-height:100vh}.main-content{padding:0 20px}.other-card{flex-direction:column}.other-thumb{width:100%}}
+#preview-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:1000;opacity:0;pointer-events:none;transition:opacity .3s ease}
+#preview-overlay.open{opacity:1;pointer-events:all}
+#preview-drawer{position:fixed;top:0;right:0;width:min(540px,94vw);height:100vh;background:#fff;z-index:1001;transform:translateX(100%);transition:transform .35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(0,0,0,.15);border-radius:18px 0 0 18px;overflow:hidden}
+#preview-drawer.open{transform:translateX(0)}
+#preview-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;border:none;background:rgba(0,0,0,.07);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#555;z-index:2;line-height:1}
+#preview-close:hover{background:rgba(0,0,0,.13)}
+#preview-frame{flex:1;border:none;width:100%;height:100%}
 </style>
 </head>
 <body>
@@ -122,30 +129,30 @@ section{padding:80px 0}
   <div class="divider"></div>
   <section>
     <h2 class="section-title">What's Currently On My Desk ⁕</h2>
-    <a class="other-card" href="https://drive.google.com/file/d/1QkOBQcga5YYHhY6fGz_dqlocjuex0MJf/view?usp=sharing" target="_blank" rel="noopener">
+    <div class="other-card" onclick="openPreview('https://drive.google.com/file/d/1QkOBQcga5YYHhY6fGz_dqlocjuex0MJf/view?usp=sharing')" style="cursor:pointer;">
       <div class="other-thumb"><img src="images/other-work/nudge.png" alt="Nudge"></div>
       <div class="other-info"><div class="other-name">Nudge - Agentic MacOS Overlay</div><div class="other-meta">UX · AGENTS · EXPERIMENT</div><div class="other-desc">Built a &quot;youtube tutorial on crack&quot; adaptive overlay that guides non-technical users through emerging AI tools in real time.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
-    </a>
-    <a class="other-card" href="https://drive.google.com/file/d/1sByUK0XOCJxYUuxOLlBN1g7wR4mmwTRr/view?usp=sharing" target="_blank" rel="noopener">
+    </div>
+    <div class="other-card" onclick="openPreview('https://drive.google.com/file/d/1sByUK0XOCJxYUuxOLlBN1g7wR4mmwTRr/view?usp=sharing')" style="cursor:pointer;">
       <div class="other-thumb"><img src="images/other-work/sourcerer.png" alt="Sourcerer"></div>
       <div class="other-info"><div class="other-name">Sourcerer — CAD Processing &amp; Sourcing System</div><div class="other-meta">CAD · COMPUTATIONAL GEOMETRY · SYSTEMS</div><div class="other-desc">Designed a pipeline that parses CAD models, extracts dimensional and manufacturability features, and links components to ranked supplier datasets.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
-    </a>
-    <a class="other-card" href="https://danicashonorsthesis.replit.app/" target="_blank" rel="noopener">
+    </div>
+    <div class="other-card" onclick="openPreview('https://danicashonorsthesis.replit.app/')" style="cursor:pointer;">
       <div class="other-thumb"><img src="images/other-work/honors thesis.jpg" alt="Honors Thesis"></div>
       <div class="other-info"><div class="other-name">Honors Thesis - Representational Alignment</div><div class="other-meta">RESEARCH · COGNITION · ML</div><div class="other-desc">Researching how AI model embeddings align with hierarchical spatial representations in developing human cognition at the Gopnik Lab.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
-    </a>
+    </div>
     <div class="other-card">
       <div class="other-thumb"><img src="images/other-work/haas.png" alt="Haas"></div>
-      <div class="other-info"><div class="other-name">Haas - Finance Process Automation System</div><div class="other-meta">SYSTEMS · OPERATIONS · AUTOMATION</div><div class="other-desc">Designed and implemented automation workflows for Haas finance employees, streamlining reimbursement processing, fund tracking, and reporting across 10+ accounts.</div><div class="card-link-icon-row" style="display:flex;gap:12px;align-items:center;margin-top:2px;"><a href="https://drive.google.com/file/d/1keSGJ4Hz4LZdekPd3bD-OobGgUj_uZUn/view?usp=sharing" target="_blank" rel="noopener" class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;" title="Receipt parse demo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a><a href="https://drive.google.com/file/d/1AXjm9l56nGyQpcTnvAhUFdLZLp81ZSRm/view?usp=sharing" target="_blank" rel="noopener" class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;" title="Quicksheets demo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a></div></div>
+      <div class="other-info"><div class="other-name">Haas - Finance Process Automation System</div><div class="other-meta">SYSTEMS · OPERATIONS · AUTOMATION</div><div class="other-desc">Designed and implemented automation workflows for Haas finance employees, streamlining reimbursement processing, fund tracking, and reporting across 10+ accounts.</div><div class="card-link-icon-row" style="display:flex;gap:12px;align-items:center;margin-top:2px;"><span onclick="openPreview('https://drive.google.com/file/d/1keSGJ4Hz4LZdekPd3bD-OobGgUj_uZUn/view?usp=sharing')" class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;cursor:pointer;" title="Receipt parse demo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span onclick="openPreview('https://drive.google.com/file/d/1AXjm9l56nGyQpcTnvAhUFdLZLp81ZSRm/view?usp=sharing')" class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;cursor:pointer;" title="Quicksheets demo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div></div>
     </div>
   </section>
   <div class="divider"></div>
   <section>
     <h2 class="section-title">Other Projects ⁕</h2>
-    <a class="other-card" href="https://drive.google.com/file/d/1rJLTeltm_BvjbyjSrDocT62T9VzIjyJx/view?usp=sharing" target="_blank" rel="noopener">
+    <div class="other-card" onclick="openPreview('https://drive.google.com/file/d/1rJLTeltm_BvjbyjSrDocT62T9VzIjyJx/view?usp=sharing')" style="cursor:pointer;">
       <div class="other-thumb"><img src="images/other-work/lucid motors.png" alt="Lucid Motors"></div>
       <div class="other-info"><div class="other-name">Lucid Motors - Multi-Agent Intelligence System</div><div class="other-meta">AGENTS · SYSTEMS · DEPLOYED</div><div class="other-desc">Led development of Lucid's first multi-agent web intelligence system, turning natural language queries into live portfolio dashboards for internal teams.</div><span class="card-link-icon" style="display:inline-flex;align-items:center;color:#bbb;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
-    </a>
+    </div>
     <div class="other-card">
       <div class="other-thumb"><img src="images/other-work/toko.png" alt="Toko"></div>
       <div class="other-info"><div class="other-name">Toko - Adaptive Feedback Agent</div><div class="other-meta">AI · HUMAN-SYSTEMS · PRODUCT</div><div class="other-desc">Designed and built an AI assistant that transforms messy qualitative feedback into structured product insights.</div></div>
@@ -284,6 +291,33 @@ function setOrganizedMode(){
 
 // Start in messy mode
 setMessyMode();
+
+function openPreview(url) {
+  let embedUrl = url;
+  const gdMatch = url.match(/drive\.google\.com\/file\/d\/([^\/]+)/);
+  if (gdMatch) {
+    embedUrl = 'https://drive.google.com/file/d/' + gdMatch[1] + '/preview';
+  }
+  document.getElementById('preview-frame').src = embedUrl;
+  document.getElementById('preview-overlay').classList.add('open');
+  document.getElementById('preview-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePreview() {
+  document.getElementById('preview-overlay').classList.remove('open');
+  document.getElementById('preview-drawer').classList.remove('open');
+  document.getElementById('preview-frame').src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
 </script>
+
+<div id="preview-overlay"></div>
+<div id="preview-drawer">
+  <button id="preview-close" onclick="closePreview()">✕</button>
+  <iframe id="preview-frame" src="" allow="autoplay" allowfullscreen></iframe>
+</div>
 </body>
 </html>
