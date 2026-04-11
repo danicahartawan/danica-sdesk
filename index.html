@@ -76,6 +76,13 @@ section{padding:80px 0}
 .flip-back-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:10px;border:none;background:rgba(255,255,255,.18);color:#fff;cursor:pointer;font-size:15px;z-index:2;display:flex;align-items:center;justify-content:center;}
 .flip-back-close:hover{background:rgba(255,255,255,.32);}
 .flip-card:not(.flipped):hover .flip-front{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.08);}
+.guna-tab{font-family:var(--mono);font-size:12px;padding:6px 14px;border-radius:8px;border:1.5px solid rgba(0,0,0,.1);background:#fff;color:#999;cursor:pointer;transition:all .2s ease;}
+.guna-tab:hover{border-color:rgba(0,0,0,.2);color:#555;}
+.guna-tab.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a;}
+.guna-panel{margin-top:16px;padding:20px;background:#fafafa;border-radius:14px;border:1.5px solid rgba(0,0,0,.06);}
+.guna-type{font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:#bbb;margin-bottom:6px;}
+.guna-title{font-family:var(--mono);font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:8px;}
+.guna-desc{font-family:var(--mono);font-size:13px;color:#666;line-height:1.7;}
 </style>
 </head>
 <body>
@@ -134,12 +141,34 @@ section{padding:80px 0}
     </div>
     <p style="font-family:var(--mono);font-size:13px;color:#999;line-height:1.75;margin-top:22px;"><em>P.S.</em> If you're curious, you can also check out <strong style="color:#777;">gunā studio</strong> — gunā, short for "use" in Bahasa. It's an independent product studio I've been working on where I design more spatial, experience-driven tools and objects.</p>
     <video src="videos/guna-studio.mp4" autoplay muted loop playsinline style="width:100%;border-radius:18px;margin-top:16px;display:block;"></video>
-    <div style="margin-top:22px;font-family:var(--mono);font-size:13px;color:#aaa;line-height:2;">
-      <div style="font-size:11px;letter-spacing:.08em;color:#ccc;margin-bottom:8px;">SELECTED WORK</div>
-      <div><span style="color:#bbb;">object</span> — Maju</div>
-      <div><span style="color:#bbb;">system</span> — Monet</div>
-      <div><span style="color:#bbb;">artifact</span> — The Leisure Journal</div>
-      <div><span style="color:#bbb;">tool</span> — Nudge</div>
+    <div style="margin-top:28px;">
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:#bbb;margin-bottom:14px;">MEET MY PROJECT COMMAND CENTER</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0;" id="guna-tabs">
+        <button class="guna-tab active" onclick="gunaTab(this,'maju')">Maju</button>
+        <button class="guna-tab" onclick="gunaTab(this,'monet')">Monet</button>
+        <button class="guna-tab" onclick="gunaTab(this,'journal')">The Leisure Journal</button>
+        <button class="guna-tab" onclick="gunaTab(this,'nudge')">Nudge</button>
+      </div>
+      <div class="guna-panel" id="panel-maju">
+        <div class="guna-type">object</div>
+        <div class="guna-title">Maju</div>
+        <div class="guna-desc">A spatial, experience-driven object designed at gunā studio.</div>
+      </div>
+      <div class="guna-panel" id="panel-monet" style="display:none;">
+        <div class="guna-type">system</div>
+        <div class="guna-title">Monet</div>
+        <div class="guna-desc">A voice-powered AI thought partner. Speak freely — your ideas become a knowledge graph and Markdown for your AI of choice, instantly. <a href="https://usemonet.space" target="_blank" style="color:#888;text-decoration:underline;">usemonet.space ↗</a></div>
+      </div>
+      <div class="guna-panel" id="panel-journal" style="display:none;">
+        <div class="guna-type">artifact</div>
+        <div class="guna-title">The Leisure Journal</div>
+        <div class="guna-desc">An experience-driven artifact exploring rest, slowness, and intentional living.</div>
+      </div>
+      <div class="guna-panel" id="panel-nudge" style="display:none;">
+        <div class="guna-type">tool</div>
+        <div class="guna-title">Nudge</div>
+        <div class="guna-desc">An agentic MacOS overlay that guides non-technical users through emerging AI tools in real time — a "YouTube tutorial on crack."</div>
+      </div>
     </div>
   </section>
   <div class="divider"></div>
@@ -350,6 +379,13 @@ function setOrganizedMode(){
 
 // Start in messy mode
 setMessyMode();
+
+function gunaTab(btn, id) {
+  document.querySelectorAll('.guna-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.guna-panel').forEach(p => p.style.display = 'none');
+  btn.classList.add('active');
+  document.getElementById('panel-' + id).style.display = 'block';
+}
 
 function flipCard(card, url) {
   const isFlipping = !card.classList.contains('flipped');
