@@ -1,0 +1,123 @@
+gunā
+objects for your desk
+
+
+About
+Email
+LinkedIn
+
+
+Selected work
+currently working on object — luxo
+
+system — command center
+system — Monet
+artifact — The Leisure Journal
+tool — Nudge
+
+
+©2026 guna
+Everyday objects, reconsidered
+
+16:58:26
+
+
+
+
+
+
+
+
+meet my project command center
+one tab for each project
+
+
+
+
+
+take a peak at my project command center — it's my personal workspace one tab for each project where all my agents, notes, chat, tasks, and integrations live together in one context window
+
+
+
+
+
+
+
+
+
+system — Monet
+voice → structure → memory
+
+
+Monet app preview
+
+
+
+Monet is a voice-driven thinking system that captures unstructured thought and transforms it into persistent structure.
+
+Spoken input is parsed into key ideas, organized into linked nodes, and maintained as a live knowledge graph. The system operates as an external layer of memory—continuously updating without requiring manual organization.
+
+Monet is self-hosted and designed for ongoing use, where thoughts accumulate and connect over time rather than being stored as isolated notes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+artifact — The Leisure Journal
+writing without outcome
+
+
+
+The Leisure Journal removes prompts, timelines, and productivity constraints from writing.
+
+There is no structure to follow and no expectation of output. The absence of guidance is intentional—creating space for thought that is not directed, optimized, or evaluated.
+
+It functions as a counter-system to productivity tools, prioritizing presence over capture.
+
+
+The Leisure Journal page 1The Leisure Journal page 4The Leisure Journal page 7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tool — Nudge
+behavior without interruption
+
+
+
+Nudge is a lightweight behavioral layer that introduces small prompts throughout the day.
+
+Rather than requiring active input, it operates in the background—surfacing suggestions at moments of low friction. The system is designed to influence action subtly, without becoming a task manager or notification stream.
+
+Nudge focuses on timing and placement rather than volume, reducing reliance on explicit reminders.
+
+
+Nudge chat widget
+
+
+
+
+
+
+
