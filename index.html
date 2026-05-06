@@ -30,6 +30,15 @@ section{padding:80px 0}
 .typewriter-dots{display:inline-block;min-width:1.2em;text-align:left}
 .currently-role{font-family:var(--mono);font-size:14px;font-weight:400;color:#1a1a1a;letter-spacing:.02em;margin-top:6px;margin-bottom:40px}
 .cooking-intro{font-family:var(--mono);font-size:14px;color:#555;line-height:1.8}
+.cooking-list{font-family:var(--mono);font-size:14px;color:#555;line-height:1.8;list-style:none;display:flex;flex-direction:column;gap:14px;padding:0;margin-top:4px;}
+.cooking-list li{padding-left:18px;position:relative;}
+.cooking-list li::before{content:'—';position:absolute;left:0;color:#bbb;}
+.peek-row{display:flex;gap:12px;margin-top:28px;}
+.peek-card{flex:1;border-radius:12px;overflow:hidden;border:1.5px solid rgba(0,0,0,.08);background:#fff;cursor:default;transition:box-shadow .2s ease;}
+.peek-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.09);}
+.peek-card video{width:100%;display:block;height:0;overflow:hidden;transition:height .35s ease;object-fit:cover;}
+.peek-card:hover video{height:140px;}
+.peek-label{font-family:var(--mono);font-size:11px;color:#888;padding:10px 14px;line-height:1.4;}
 .highlight{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:8px;padding:2px 8px;font-family:'Segoe Script',cursive;font-size:18px;color:#2a2a2a;box-shadow:0 1px 6px rgba(0,0,0,.08);vertical-align:middle}
 .highlight img{width:22px;height:22px;border-radius:4px}
 .project-list{display:flex;flex-direction:column;gap:16px;margin-top:10px}
@@ -146,8 +155,21 @@ section{padding:80px 0}
   <section style="padding:80px 0 60px;">
     <h2 class="section-title">Currently<span class="typewriter-dots" id="currentlyDots"></span></h2>
     <p class="currently-role">Incoming Technical Product Management Intern at NVIDIA</p>
-    <p class="cooking-intro">I like building things, breaking into new spaces, and figuring stuff out as I go. Right now that looks like shipping AI products at Lucid Motors, leading my product club at Berkeley and working on my honors thesis at the Gopnik Lab on how kids and AI represent space.</p>
-    <p class="cooking-intro" style="margin-top:10px;">I've had the chance to work with teams at Berkeley (Haas), Microsoft, Uber Eats, and Second Front Systems, and I've been building small tools like Nudge and Memory Mirror along the way. I'm also a regular volunteer at CEI, which helps me stay connected to work beyond just tech.</p>
+    <ul class="cooking-list">
+      <li>I like building things, breaking into new spaces, and figuring stuff out as I go. Last week, that meant visiting an architecture studio just to understand a space I knew very little about.</li>
+      <li>I like leading sourcing and building product engineering experiences at Berkeley — working with companies like Microsoft, Uber Eats, Meta, and Coca-Cola.</li>
+      <li>I like having something new to show every week, whether that's my honors thesis, tools like Nudge and Memory Mirror, or volunteering at CEI.</li>
+    </ul>
+    <div class="peek-row">
+      <div class="peek-card" id="peekLeft" onmouseenter="var v=document.getElementById('vidLeft');v.currentTime=0;v.play();" onmouseleave="document.getElementById('vidLeft').pause();">
+        <video src="videos/yarn.mp4" muted loop playsinline preload="auto" id="vidLeft"></video>
+        <div class="peek-label">← building yarn — a tool for journalists</div>
+      </div>
+      <div class="peek-card" id="peekRight" onmouseenter="var v=document.getElementById('vidRight');v.currentTime=0;v.play();" onmouseleave="document.getElementById('vidRight').pause();">
+        <video src="videos/study-lamp.mp4" muted loop playsinline preload="auto" id="vidRight"></video>
+        <div class="peek-label">recently built a proactive study lamp inspired by pixar's luxo junior →</div>
+      </div>
+    </div>
   </section>
   <div class="divider"></div>
   <section>
@@ -247,6 +269,7 @@ document.querySelectorAll('.project-card,.other-card').forEach(c=>{
 // Typewriter ellipsis for "Currently..."
 const dotsEl=document.getElementById('currentlyDots');
 if(dotsEl){let n=0;setInterval(()=>{dotsEl.textContent='.'.repeat(n);n=(n+1)%4;},400);}
+
 
 const floats=document.querySelectorAll('.float-obj');
 let mouseX=window.innerWidth/2,mouseY=window.innerHeight/2;
@@ -391,6 +414,7 @@ function closePreview() {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
 </script>
+
 
 <div id="preview-overlay"></div>
 <div id="preview-drawer">
