@@ -213,7 +213,7 @@
   var experimentFragment = document.createDocumentFragment();
   experiments.forEach(function (experiment) {
     var card = document.createElement('article');
-    card.className = 'home-index-item portfolio-experiment';
+    card.className = 'home-index-item portfolio-experiment is-hidden';
     card.setAttribute('data-category', 'play');
     card.setAttribute('aria-label', experiment.caption);
 

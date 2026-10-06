@@ -121,7 +121,7 @@ html {
   }
 
   .desk-record { right: 2.5%; top: 10%; z-index: 2; width: clamp(6rem, 7vw, 7.5rem); }
-  .desk-nudge { right: 2%; top: 42%; z-index: 1; width: clamp(8rem, 10vw, 11rem); }
+  .desk-nudge { left: 2%; top: 42%; z-index: 1; width: clamp(8rem, 10vw, 11rem); }
 
   .desk-folder {
     right: 14%;
