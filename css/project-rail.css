@@ -114,10 +114,10 @@ html {
   }
 
   .desk-watch {
-    right: 15%;
-    top: 18%;
+    left: 19%;
+    top: 12%;
     width: clamp(3.25rem, 4vw, 4.5rem);
-    transform: rotate(-13deg);
+    transform: rotate(11deg);
   }
 
   .desk-record { right: 2.5%; top: 10%; z-index: 2; width: clamp(6rem, 7vw, 7.5rem); }
@@ -310,6 +310,10 @@ body:has(.currently-list-wrapper)::after {
   content: "";
   display: block;
   height: clamp(6rem, 16vh, 12rem);
+}
+
+body:has(.currently-list-wrapper) .section-footer .footer-right {
+  display: none;
 }
 
 .project-rail-intro {

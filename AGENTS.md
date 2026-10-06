@@ -29,7 +29,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Keep the intro typography at its current scale; avoid oversized text and excessive whitespace.
 - Use the display typeface selectively for Danica's name and emphasized phrases.
 - Keep desk objects grouped along the outer edges so the intro remains readable.
-- Keep the pen in the lower-left desk cluster and the watch in the upper-right cluster, outside the intro copy.
+- Keep the pen in the lower-left desk cluster and the watch in the upper-left cluster, outside the intro copy.
 - Project cards retain their original image dimensions and use Albert Sans for captions.
 - Project headlines span the full card width; category metadata sits underneath.
 - Vertical page scrolling drives the desktop horizontal project rail.
