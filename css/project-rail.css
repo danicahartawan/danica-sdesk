@@ -114,18 +114,18 @@ html {
   }
 
   .desk-watch {
-    left: 19%;
-    top: 12%;
+    left: 16%;
+    top: 15%;
     width: clamp(3.25rem, 4vw, 4.5rem);
     transform: rotate(11deg);
   }
 
   .desk-record { right: 2.5%; top: 10%; z-index: 2; width: clamp(6rem, 7vw, 7.5rem); }
-  .desk-nudge { left: 2%; top: 42%; z-index: 1; width: clamp(8rem, 10vw, 11rem); }
+  .desk-nudge { left: 2%; top: 16%; z-index: 1; width: clamp(8rem, 10vw, 11rem); }
 
   .desk-folder {
-    right: 14%;
-    top: 57%;
+    right: 3%;
+    top: 35%;
     width: clamp(4rem, 5vw, 5.25rem);
     text-align: center;
     font-family: Arial, sans-serif;
@@ -176,8 +176,13 @@ html {
 
 .home-about-section {
   scroll-margin-top: 2rem;
+  min-height: auto;
   padding-top: clamp(3rem, 7vh, 6rem);
-  padding-bottom: clamp(3rem, 7vh, 6rem);
+  padding-bottom: 1.5rem;
+}
+
+.home-about-section + .spacer-xxhuge {
+  padding-top: 1rem;
 }
 
 .home-about-section .danica-about-visual img,

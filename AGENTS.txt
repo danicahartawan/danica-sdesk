@@ -22,8 +22,8 @@ SELECTED PROJECTS
 
 CADY
 Audience: Beginner designers and engineers
-Danica is building a CAD tool that is actually useful for people learning to design and
-engineer.
+Danica is building a CAD tool that aims to bring back creative freedom to engineers and
+designers.
 
 LUCID MOTORS
 Audience: Non-technical researchers
