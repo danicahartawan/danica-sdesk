@@ -76,25 +76,25 @@
         return;
       }
       if (reply.length < 8) {
-        addBotBubble('give me just a tiny bit more — your name and one thing about you is perfect.');
+        addBotBubble('give me just a tiny bit more. your name and one thing about you is perfect.');
         return;
       }
       visitorIntro = reply;
       state = 'choose';
       input.placeholder = '';
-      showTimes('okay wait, you sound fun. i checked danica’s week — would any of these work?');
+      showTimes('okay wait, you sound fun. i checked danica’s week. would any of these work?');
       return;
     }
 
     if (state === 'choose') {
       if (/none|can.?t|cannot|nope|different|reshuffle|other/.test(reply.toLowerCase())) {
         activeSet = activeSet === 0 ? 1 : 0;
-        showTimes('all good — reshuffling. how about:');
+        showTimes('all good, reshuffling. how about:');
         return;
       }
       var choice = Number((reply.match(/[123]/) || [])[0]);
       if (!choice) {
-        addBotBubble('just type 1, 2, or 3 — or say none and i’ll reshuffle :)');
+        addBotBubble('just type 1, 2, or 3. or say none and i’ll reshuffle :)');
         return;
       }
       selectedSlot = slotSets[activeSet][choice - 1];
@@ -111,7 +111,7 @@
 
   function showTimes(lead) {
     var slots = slotSets[activeSet];
-    addBotBubble(lead + '\n\n1 — ' + slots[0].label + '\n2 — ' + slots[1].label + '\n3 — ' + slots[2].label + '\n\nnone of these? just type “none.”');
+    addBotBubble(lead + '\n\n1: ' + slots[0].label + '\n2: ' + slots[1].label + '\n3: ' + slots[2].label + '\n\nnone of these? just type “none.”');
   }
 
   function sendRequest(email) {

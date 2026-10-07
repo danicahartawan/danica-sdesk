@@ -59,6 +59,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Keep the canonical URL and Open Graph/Twitter metadata pointed at `danicahartawan.work`; never reuse cloned-site titles, descriptions, icons, or preview images.
 - Keep API secrets out of client-side code. The scheduling widget uses fixed calendar-derived slots and a mailto handoff; update its slot data when Danica provides a newer calendar.
 - Keep scheduling-widget replies casual and lowercase. The compact launcher is static and reads “stalk me, then talk to me.” The expanded widget has no header bar, no typewriter effect, no send-arrow button, and no “type here” placeholder. Meeting times appear in one chat bubble; visitors press Enter to reply with 1, 2, or 3, and “none” reshuffles alternatives before the email relay.
+- Never use em dashes in scheduling-widget conversation copy.
 - Keep the collapsed widget thin and text-only. Its expanded state grows sideways into a short rectangle rather than vertically into a tall chat window.
 - Keep the experiment order newest/backward as: YouTube, accessible software/hardware freelance work, teaching, mentor, snowboarding, pottery, thesis.
 - Verify visual changes in the local browser before finishing.
