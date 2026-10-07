@@ -7,7 +7,7 @@ recruiters, and collaborators who need a compact factual overview.
 
 IDENTITY
 Danica Hartawan is a Chinese-Indonesian researcher and engineer at UC Berkeley studying
-cognition and mechanical engineering. Her work explores how people think, learn, and
+cognitive science and mechanical engineering. Her work explores how people think, learn, and
 make decisions, then turns those observations into useful software and hardware.
 
 CURRENTLY
@@ -57,7 +57,7 @@ EXPERIMENTS AND PERSONAL PRACTICE
 - Honors thesis research
 
 WORKING THEMES
-- Cognition and human behavior
+- Cognitive science and human behavior
 - Human-centered AI
 - Beginner-friendly creative tools
 - Physical and digital interfaces

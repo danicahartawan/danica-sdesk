@@ -155,7 +155,7 @@
     {
       name: 'Yarn',
       description: 'I built Yarn with 40+ Berkeley Journalism students, exploring the intersection of local AI and physical + digital research notes.',
-      media: '/Users/danicahartawan/Downloads/yarn.mp4',
+      media: 'assets/projects/yarn.mp4',
       poster: 'assets/projects/yarn-poster.jpg',
       scope: ['JOURNALISTS']
     },
@@ -205,7 +205,7 @@
       image: 'assets/experiments/youtube-poster.jpg'
     },
     {
-      caption: 'Exploring building lots of software and hardware for normal people — freelance work',
+      caption: 'Exploring building lots of software and hardware for normal people - freelance work',
       media: 'assets/experiments/freelance.mp4',
       poster: 'assets/experiments/freelance-poster.jpg'
     },
@@ -255,7 +255,7 @@
               '<div class="text-size-regular danica-about-copy">',
                 '<em class="heading-style-logo text-size-regular">Danica Hartawan</em>, Chinese-Indonesian researcher and engineer at UC Berkeley.',
                 '<br><br>',
-                'I always thought I&rsquo;d become a behavior technician &mdash; and in a way, I did (fun fact: I&rsquo;m a licensed behavior technician for autism). I&rsquo;ve long been fascinated by how people think, learn, and make decisions, and that curiosity now shapes the systems I build.',
+                'I always thought I&rsquo;d become a behavior technician - and in a way, I did (fun fact: I&rsquo;m a licensed behavior technician for autism). I&rsquo;ve long been fascinated by how people think, learn, and make decisions, and that curiosity now shapes the systems I build.',
                 '<br><br>',
                 '<div class="danica-recently">',
                   '<div class="danica-recently-label">Recently</div>',
