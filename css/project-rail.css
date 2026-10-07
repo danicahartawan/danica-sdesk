@@ -115,16 +115,16 @@ html {
 
   .desk-watch {
     left: 16%;
-    top: 15%;
+    top: 6%;
     width: clamp(3.25rem, 4vw, 4.5rem);
     transform: rotate(11deg);
   }
 
   .desk-record { right: 2.5%; top: 10%; z-index: 2; width: clamp(6rem, 7vw, 7.5rem); }
-  .desk-nudge { left: 2%; top: 16%; z-index: 1; width: clamp(8rem, 10vw, 11rem); }
+  .desk-nudge { left: 2%; top: 5%; z-index: 1; width: clamp(8rem, 10vw, 11rem); }
 
   .desk-folder {
-    right: 3%;
+    right: 10%;
     top: 35%;
     width: clamp(4rem, 5vw, 5.25rem);
     text-align: center;
