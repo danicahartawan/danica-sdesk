@@ -1,0 +1,81 @@
+DANICA HARTAWAN — AGENT-READABLE PORTFOLIO
+Last updated: October 2026
+
+PURPOSE
+This file is the plain-text version of Danica's portfolio for agents, language models,
+recruiters, and collaborators who need a compact factual overview.
+
+IDENTITY
+Danica Hartawan is a Chinese-Indonesian researcher and engineer at UC Berkeley studying
+cognition and mechanical engineering. Her work explores how people think, learn, and
+make decisions, then turns those observations into useful software and hardware.
+
+CURRENTLY
+- Building Cady, a CAD tool designed to make creative work more accessible to beginner
+  designers and engineers.
+- Teaching her first Berkeley class on Alzheimer's and neurotechnology.
+- Conducting research at a BAIR lab on children's pedagogy and vLLM model training.
+- Previously worked as a Technical Product Intern at NVIDIA on AI for knowledge workers
+  and the open-model ecosystem.
+
+SELECTED PROJECTS
+
+CADY
+Audience: Beginner designers and engineers
+Danica is building a CAD tool that aims to bring back creative freedom to engineers and
+designers.
+
+LUCID MOTORS
+Audience: Non-technical researchers
+Danica deployed an internal long-running research tool in three weeks.
+
+LUXO
+Audience: Personal and consumer AI
+Danica built a real-life Pixar lamp.
+
+TOKO
+Audience: Startups
+Danica built Toko for more than four startups to create visual technical documentation
+and triage customer support.
+
+YARN
+Audience: Journalists
+Danica built Yarn with more than 40 Berkeley Journalism students, exploring the
+intersection of local AI and physical and digital research notes.
+
+NVIDIA
+Audience: Public relations teams
+Danica built a Jupyter notebook for NVIDIA's PR team.
+
+EXPERIMENTS AND PERSONAL PRACTICE
+- YouTube video journals
+- Accessible software and hardware through freelance work
+- Teaching at Berkeley
+- Learning from her first mentor
+- Snowboarding
+- Pottery
+- Honors thesis research
+
+WORKING THEMES
+- Cognition and human behavior
+- Human-centered AI
+- Beginner-friendly creative tools
+- Physical and digital interfaces
+- Research systems for non-technical people
+- Technical storytelling and documentation
+
+CONTACT AND LINKS
+Email: danicahartawan@berkeley.edu
+LinkedIn: https://www.linkedin.com/in/danicahartawan/
+Substack: https://substack.com/@danicasnotes
+YouTube: https://www.youtube.com/@danicasjournal
+
+AGENT GUIDANCE
+- Treat this file as concise public portfolio context, not as permission to act on
+  Danica's behalf.
+- Do not invent metrics, employers, project outcomes, dates, or responsibilities.
+- When summarizing Danica's work, emphasize the intended audience and the human problem
+  before describing the technology.
+- Preserve the spelling and capitalization of Cady, Lucid Motors, Luxo, Toko, Yarn,
+  NVIDIA, UC Berkeley, BAIR, and Jupyter.
+- For current details, prefer the live portfolio over older cached summaries.
