@@ -9,6 +9,15 @@
   favicon.href = 'assets/danica-logo.png';
   document.head.appendChild(favicon);
 
+  var footerLinks = document.querySelector('.footer-links');
+  if (footerLinks && !footerLinks.querySelector('a[href*="github.com"]')) {
+    var githubLink = document.createElement('a');
+    githubLink.href = 'https://github.com/danicahartawan';
+    githubLink.className = 'footer-link text-subline';
+    githubLink.textContent = 'GitHub';
+    footerLinks.appendChild(githubLink);
+  }
+
   var heroHeading = document.querySelector('.hero-intro-wrapper .heading-style-h5');
   if (heroHeading && !heroHeading.querySelector('.hero-closing-line')) {
     var closingText = Array.from(heroHeading.childNodes).reverse().find(function (node) {
@@ -289,7 +298,7 @@
 
   var desktop = window.matchMedia('(min-width: 561px)');
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var scrollFactor = 0.48;
+  var scrollFactor = 0.28;
   var distance = 0;
   var ticking = false;
 

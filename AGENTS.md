@@ -8,7 +8,6 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 
 ## Local setup
 
-- Site root: `rachelchak-clone/`
 - Start locally from this directory with `python3 -m http.server 8765`.
 - Open `http://127.0.0.1:8765/`.
 - No build step is currently required.
@@ -25,7 +24,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 
 ## Design direction
 
-- Preserve the compact editorial character of the original Rachel Chak-inspired layout.
+- Preserve the compact editorial character of the layout.
 - Keep the intro typography at its current scale; avoid oversized text and excessive whitespace.
 - Use the display typeface selectively for Danica's name and emphasized phrases.
 - Keep desk objects grouped along the outer edges so the intro remains readable.
@@ -35,7 +34,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Project cards retain their original image dimensions and use Albert Sans for captions.
 - Project headlines span the full card width; category metadata sits underneath.
 - Vertical page scrolling drives the desktop horizontal project rail.
-- Desktop project scrolling is accelerated so the in-page About section arrives without an excessively long vertical scroll.
+- Desktop project scrolling uses a compact 0.28 vertical-to-horizontal factor so the in-page About section arrives quickly.
 
 ## Important files
 
@@ -54,5 +53,6 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Do not enlarge project cards unless Danica explicitly requests it.
 - When changing a project, update its image, headline, link, and metadata together.
 - Keep the homepage project order: Cady, Lucid, Luxo, Toko, Yarn, NVIDIA.
+- Keep GitHub (`https://github.com/danicahartawan`) alongside the existing footer links.
 - Keep the experiment order newest/backward as: YouTube, accessible software/hardware freelance work, teaching, mentor, snowboarding, pottery, thesis.
 - Verify visual changes in the local browser before finishing.
