@@ -4,6 +4,44 @@ html {
   scroll-behavior: smooth;
 }
 
+.navigation-links-wrapper {
+  position: relative;
+}
+
+.filter-tab-indicator {
+  position: absolute;
+  left: 0;
+  bottom: -0.6rem;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.filter-tab-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2f6dff;
+  box-shadow: 0 1px 4px rgba(47, 109, 255, 0.25);
+}
+
+.filter-tab-dot.is-bouncing {
+  animation: filter-dot-bounce 0.52s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes filter-dot-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  38% { transform: translateY(-7px) scale(1.08, 0.92); }
+  68% { transform: translateY(1px) scale(0.94, 1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-tab-indicator { transition: none; }
+  .filter-tab-dot.is-bouncing { animation: none; }
+}
+
 .danica-nav-logo {
   position: relative;
   width: clamp(3rem, 4.5vw, 5.25rem);

@@ -165,6 +165,25 @@
     if (projectFilter) projectFilter.textContent = 'PROJECTS';
     if (experimentFilter) experimentFilter.textContent = 'EXPERIMENTS';
 
+    var tabIndicator = document.createElement('span');
+    tabIndicator.className = 'filter-tab-indicator';
+    tabIndicator.setAttribute('aria-hidden', 'true');
+    tabIndicator.innerHTML = '<span class="filter-tab-dot"></span>';
+    filterNav.appendChild(tabIndicator);
+    var activeCategoryFilter = projectFilter;
+
+    function moveTabIndicator(activeFilter, shouldBounce) {
+      if (!activeFilter) return;
+      var dotOffset = activeFilter.offsetLeft + (activeFilter.offsetWidth / 2) - 3;
+      tabIndicator.style.transform = 'translate3d(' + dotOffset + 'px, 0, 0)';
+      if (shouldBounce) {
+        var dot = tabIndicator.firstElementChild;
+        dot.classList.remove('is-bouncing');
+        void dot.offsetWidth;
+        dot.classList.add('is-bouncing');
+      }
+    }
+
     function showCategory(category, activeFilter) {
       document.querySelectorAll('.currently-list [data-category]').forEach(function (item) {
         var categories = (item.getAttribute('data-category') || '').split(' ');
@@ -172,23 +191,24 @@
       });
       projectFilter.classList.toggle('text-color-alternate', activeFilter !== projectFilter);
       experimentFilter.classList.toggle('text-color-alternate', activeFilter !== experimentFilter);
+      activeCategoryFilter = activeFilter;
+      moveTabIndicator(activeFilter, true);
       window.dispatchEvent(new Event('resize'));
     }
 
-    projectFilter.addEventListener('click', function (event) {
-      event.preventDefault();
-      showCategory('work', projectFilter);
-    });
-    experimentFilter.addEventListener('click', function (event) {
-      event.preventDefault();
-      showCategory('play', experimentFilter);
-    });
     document.addEventListener('click', function (event) {
       var filter = event.target.closest('[data-filter]');
       if (filter !== projectFilter && filter !== experimentFilter) return;
       event.preventDefault();
       showCategory(filter === projectFilter ? 'work' : 'play', filter);
     }, true);
+
+    window.addEventListener('resize', function () {
+      moveTabIndicator(activeCategoryFilter, false);
+    });
+    window.requestAnimationFrame(function () {
+      moveTabIndicator(projectFilter, false);
+    });
 
     var viewIndex = document.querySelector('.subnav-view-link');
     if (viewIndex) viewIndex.remove();
