@@ -26,7 +26,6 @@
   widget.innerHTML = [
     '<button class="meet-widget-launcher" type="button" aria-expanded="false">',
       '<span><span class="meet-widget-launcher-copy" aria-label="stalk me, then talk to me"></span><span class="meet-widget-mini-caret"></span></span>',
-      '<span class="meet-widget-launcher-arrow" aria-hidden="true">↗</span>',
     '</button>',
     '<section class="meet-widget-panel" aria-hidden="true">',
       '<header class="meet-widget-header">',

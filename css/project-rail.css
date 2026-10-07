@@ -55,16 +55,16 @@ html {
 .meet-widget input { font: inherit; }
 
 .meet-widget-launcher {
-  width: 18rem;
-  min-height: 3.45rem;
-  padding: 0.75rem 0.875rem 0.75rem 1rem;
+  width: 9rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.85rem;
   border: 1px solid rgba(20, 20, 20, 0.12);
-  border-radius: 1.25rem;
+  border-radius: 0.85rem;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 0.75rem 2rem rgba(20, 20, 20, 0.1);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   cursor: pointer;
   backdrop-filter: blur(14px);
 }
@@ -90,22 +90,12 @@ html {
   flex: 0 0 auto;
 }
 
-.meet-widget-launcher-arrow {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 0.75rem;
-  background: #ededeb;
-  display: grid;
-  place-items: center;
-  font-size: 1.15rem;
-}
-
 .meet-widget-panel {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: min(25rem, calc(100vw - 2rem));
-  height: min(34rem, calc(100vh - 2rem));
+  width: min(31rem, calc(100vw - 2rem));
+  height: min(21rem, calc(100vh - 2rem));
   border: 1px solid rgba(20, 20, 20, 0.1);
   border-radius: 1.75rem;
   background: #fbfbfa;
@@ -113,8 +103,8 @@ html {
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(1rem) scale(0.94);
-  transform-origin: right bottom;
+  transform: translateX(1.5rem) scaleX(0.82);
+  transform-origin: right center;
   transition: opacity 0.6s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.6s;
   display: flex;
   flex-direction: column;
@@ -224,8 +214,8 @@ html {
 
 @media (max-width: 560px) {
   .meet-widget { right: 0.75rem; bottom: 0.75rem; }
-  .meet-widget-launcher { width: min(18rem, calc(100vw - 1.5rem)); }
-  .meet-widget-panel { width: calc(100vw - 1.5rem); height: min(35rem, calc(100vh - 1.5rem)); }
+  .meet-widget-launcher { width: 8.5rem; }
+  .meet-widget-panel { width: calc(100vw - 1.5rem); height: min(25rem, calc(100vh - 1.5rem)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
