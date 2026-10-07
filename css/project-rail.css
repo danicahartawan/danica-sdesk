@@ -69,17 +69,9 @@ html {
   backdrop-filter: blur(14px);
 }
 
-.meet-widget-launcher-copy { font-size: 0.78rem; }
-.meet-widget-mini-caret {
-  width: 1px;
-  height: 0.8rem;
-  margin-left: -0.32rem;
-  background: currentColor;
-  animation: hero-caret-blink 0.75s steps(1, end) infinite;
-}
+.meet-widget-launcher-copy { font-size: 0.72rem; white-space: nowrap; }
 
-.meet-widget-launcher > span:first-child,
-.meet-widget-header > div { display: flex; align-items: center; gap: 0.5rem; }
+.meet-widget-launcher > span:first-child { display: flex; align-items: center; gap: 0.5rem; }
 
 .meet-widget-status {
   width: 0.5rem;
@@ -117,22 +109,21 @@ html {
   transform: translateY(0) scale(1);
 }
 
-.meet-widget-header {
-  padding: 1.1rem 1.1rem 0.9rem 1.25rem;
-  border-bottom: 1px solid rgba(20, 20, 20, 0.08);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.meet-widget-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.85rem;
+  z-index: 2;
+  border: 0;
+  background: none;
+  color: #888;
+  font-size: 1.1rem;
+  cursor: pointer;
 }
-
-.meet-widget-header > div { flex-wrap: wrap; }
-.meet-widget-header strong { font-size: 12px; font-weight: 500; }
-.meet-widget-header small { width: 100%; margin-left: 0; color: #888; font-size: 9px; letter-spacing: 0.06em; }
-.meet-widget-close { border: 0; background: none; color: #888; font-size: 1.5rem; cursor: pointer; }
 
 .meet-widget-thread {
   flex: 1;
-  padding: 1.25rem;
+  padding: 2.25rem 1.25rem 1.25rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;

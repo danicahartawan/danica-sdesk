@@ -13,27 +13,22 @@
       { label: 'fri, oct 9 · 4:00–4:15 pm', value: 'friday, october 9 from 4:00 to 4:15 pm pt' }
     ]
   ];
-  var intro = 'hey, i’ll help u find time to meet w danica for 15 mins. what’s ur name and how wld u describe urself?';
   var visitorIntro = '';
   var selectedSlot = null;
   var activeSet = 0;
   var state = 'intro';
-  var introPlayed = false;
 
   var widget = document.createElement('aside');
   widget.className = 'meet-widget';
   widget.setAttribute('aria-label', 'find time with danica');
   widget.innerHTML = [
     '<button class="meet-widget-launcher" type="button" aria-expanded="false">',
-      '<span><span class="meet-widget-launcher-copy" aria-label="stalk me, then talk to me"></span><span class="meet-widget-mini-caret"></span></span>',
+      '<span class="meet-widget-launcher-copy">stalk me, then talk to me</span>',
     '</button>',
     '<section class="meet-widget-panel" aria-hidden="true">',
-      '<header class="meet-widget-header">',
-        '<div><strong>talk to me</strong><small>berkeley, ca · 15 mins</small></div>',
-        '<button class="meet-widget-close" type="button" aria-label="collapse scheduling widget">−</button>',
-      '</header>',
+      '<button class="meet-widget-close" type="button" aria-label="collapse scheduling widget">−</button>',
       '<div class="meet-widget-thread" aria-live="polite">',
-        '<div class="meet-widget-bubble meet-widget-intro"></div>',
+        '<div class="meet-widget-bubble meet-widget-intro">hey, i’ll help u find time to meet w danica for 15 mins. what’s ur name and how wld u describe urself?</div>',
         '<form class="meet-widget-chat-form">',
           '<div class="meet-widget-input-row">',
             '<input id="meet-widget-input" name="message" type="text" autocomplete="off" placeholder="type here…" aria-label="type your reply" required>',
@@ -47,27 +42,19 @@
   document.body.appendChild(widget);
 
   var launcher = widget.querySelector('.meet-widget-launcher');
-  var launcherCopy = widget.querySelector('.meet-widget-launcher-copy');
   var panel = widget.querySelector('.meet-widget-panel');
   var close = widget.querySelector('.meet-widget-close');
   var form = widget.querySelector('.meet-widget-chat-form');
   var input = widget.querySelector('#meet-widget-input');
   var hint = widget.querySelector('.meet-widget-hint');
   var thread = widget.querySelector('.meet-widget-thread');
-  var introBubble = widget.querySelector('.meet-widget-intro');
-
-  playLauncherLoop();
 
   function setOpen(open) {
     widget.classList.toggle('is-open', open);
     launcher.setAttribute('aria-expanded', String(open));
     panel.setAttribute('aria-hidden', String(!open));
     if (open) {
-      if (!introPlayed) {
-        introPlayed = true;
-        window.setTimeout(function () { typeText(introBubble, intro, 34); }, 700);
-      }
-      window.setTimeout(function () { input.focus(); }, 1150);
+      window.setTimeout(function () { input.focus(); }, 650);
     }
   }
 
@@ -85,10 +72,18 @@
     addUserBubble(reply.toLowerCase());
 
     if (state === 'intro') {
+      if (/^(hi|hey|hello|yo|hii+)[!?. ]*$/i.test(reply)) {
+        addBotBubble('hey :) tell me your name and a little about yourself, then i’ll look at danica’s week.');
+        return;
+      }
+      if (reply.length < 8) {
+        addBotBubble('give me just a tiny bit more — your name and one thing about you is perfect.');
+        return;
+      }
       visitorIntro = reply;
       state = 'choose';
       input.placeholder = 'type 1, 2, 3, or none…';
-      showTimes('love that. these work with danica’s calendar:');
+      showTimes('okay wait, you sound fun. i checked danica’s week — would any of these work?');
       return;
     }
 
@@ -167,8 +162,9 @@
   function addBotBubble(text) {
     var bubble = document.createElement('div');
     bubble.className = 'meet-widget-bubble';
+    bubble.textContent = text;
     thread.insertBefore(bubble, form);
-    typeText(bubble, text, 18, scrollThread);
+    scrollThread();
   }
 
   function addBotLink(text, href) {
@@ -186,46 +182,4 @@
     thread.scrollTop = thread.scrollHeight;
   }
 
-  function playLauncherLoop() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      launcherCopy.textContent = 'talk to me';
-      return;
-    }
-    function stalk() {
-      typeText(launcherCopy, 'stalk me', 130, function () {
-        window.setTimeout(function () {
-          eraseText(launcherCopy, 80, function () {
-            typeText(launcherCopy, 'talk to me', 130, function () {
-              window.setTimeout(function () {
-                eraseText(launcherCopy, 80, stalk);
-              }, 1700);
-            });
-          });
-        }, 1100);
-      });
-    }
-    stalk();
-  }
-
-  function typeText(node, text, speed, done) {
-    var index = 0;
-    node.textContent = '';
-    function step() {
-      index += 1;
-      node.textContent = text.slice(0, index);
-      scrollThread();
-      if (index < text.length) window.setTimeout(step, speed);
-      else if (done) done();
-    }
-    step();
-  }
-
-  function eraseText(node, speed, done) {
-    function step() {
-      node.textContent = node.textContent.slice(0, -1);
-      if (node.textContent.length) window.setTimeout(step, speed);
-      else if (done) done();
-    }
-    step();
-  }
 })();
