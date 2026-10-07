@@ -108,19 +108,35 @@
     aboutLink.textContent = 'ABOUT';
     aboutLink.setAttribute('href', document.querySelector('.currently-list-wrapper') ? '#about' : 'index.html#about');
 
+    function setMainNavState(active) {
+      var aboutIsActive = active === 'about';
+      homeLink.classList.toggle('text-color-alternate', aboutIsActive);
+      homeLink.classList.toggle('w--current', !aboutIsActive);
+      aboutLink.classList.toggle('text-color-alternate', !aboutIsActive);
+      aboutLink.classList.toggle('w--current', aboutIsActive);
+      agentsLink.classList.add('text-color-alternate');
+      homeLink.removeAttribute('aria-current');
+      aboutLink.removeAttribute('aria-current');
+      (aboutIsActive ? aboutLink : homeLink).setAttribute('aria-current', 'page');
+    }
+
     // Add quick scroll to about section
     aboutLink.addEventListener('click', function(e) {
       var aboutSection = document.getElementById('about');
       if (aboutSection) {
         e.preventDefault();
+        setMainNavState('about');
+        window.history.replaceState(null, '', '#about');
         aboutSection.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     });
 
     agentsLink.textContent = 'AGENTS.TXT';
     agentsLink.setAttribute('href', 'AGENTS.txt');
-    agentsLink.className = 'nav-link text-subline is-agents';
+    agentsLink.className = 'nav-link text-subline text-color-alternate is-agents';
     navItems[3].remove();
+
+    setMainNavState(window.location.hash === '#about' ? 'about' : 'home');
 
     navItems.forEach(function (item) {
       var glyph = item.querySelector('.text-glyph');
