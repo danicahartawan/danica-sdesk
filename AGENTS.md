@@ -27,6 +27,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Preserve the compact editorial character of the layout.
 - Keep the intro typography at its current scale; avoid oversized text and excessive whitespace.
 - Use the display typeface selectively for Danica's name and emphasized phrases.
+- Preserve the short typewriter introduction on the first hero line, including the display typeface for Danica's name and reduced-motion fallback.
 - Keep desk objects grouped along the outer edges so the intro remains readable.
 - Keep the pen in the lower-left desk cluster and the watch in the upper-left cluster, outside the intro copy.
 - Keep Nudge and the watch together in the upper-left desk cluster, and keep the folder toward the right edge without overlapping AirDrop.

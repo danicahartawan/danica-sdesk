@@ -31,6 +31,72 @@
     }
   }
 
+  if (heroHeading && !heroHeading.querySelector('.hero-typewriter')) {
+    var firstBreak = Array.from(heroHeading.childNodes).find(function (node) {
+      return node.nodeName === 'BR';
+    });
+
+    if (firstBreak) {
+      var firstLineStart = heroHeading.firstChild;
+      var typewriter = document.createElement('span');
+      typewriter.className = 'hero-typewriter';
+      typewriter.setAttribute('aria-label', 'Hey, I’m Danica. Welcome to my desk!');
+      heroHeading.insertBefore(typewriter, firstLineStart);
+
+      while (typewriter.nextSibling && typewriter.nextSibling !== firstBreak) {
+        typewriter.appendChild(typewriter.nextSibling);
+      }
+
+      var ghost = document.createElement('span');
+      ghost.className = 'hero-typewriter-ghost';
+      ghost.setAttribute('aria-hidden', 'true');
+      while (typewriter.firstChild) ghost.appendChild(typewriter.firstChild);
+
+      var typed = document.createElement('span');
+      typed.className = 'hero-typewriter-copy';
+      typed.setAttribute('aria-hidden', 'true');
+      typed.innerHTML = '<span class="hero-typewriter-prefix"></span><span class="heading-style-logo homepage-header-text hero-typewriter-name"></span><span class="hero-typewriter-suffix"></span><span class="hero-typewriter-caret"></span>';
+      typewriter.appendChild(ghost);
+      typewriter.appendChild(typed);
+
+      var prefix = 'Hey, I’m ';
+      var name = 'Danica';
+      var suffix = '. Welcome to my desk!';
+      var message = prefix + name + suffix;
+      var prefixNode = typed.querySelector('.hero-typewriter-prefix');
+      var nameNode = typed.querySelector('.hero-typewriter-name');
+      var suffixNode = typed.querySelector('.hero-typewriter-suffix');
+
+      function renderTypewriter(count) {
+        prefixNode.textContent = message.slice(0, Math.min(count, prefix.length));
+        nameNode.textContent = count > prefix.length
+          ? message.slice(prefix.length, Math.min(count, prefix.length + name.length))
+          : '';
+        suffixNode.textContent = count > prefix.length + name.length
+          ? message.slice(prefix.length + name.length, count)
+          : '';
+      }
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        renderTypewriter(message.length);
+        typewriter.classList.add('is-complete');
+      } else {
+        var character = 0;
+        window.setTimeout(function typeNextCharacter() {
+          character += 1;
+          renderTypewriter(character);
+          if (character < message.length) {
+            window.setTimeout(typeNextCharacter, 48);
+          } else {
+            window.setTimeout(function () {
+              typewriter.classList.add('is-complete');
+            }, 700);
+          }
+        }, 450);
+      }
+    }
+  }
+
   var navItems = document.querySelectorAll('.nav-links-row .nav-link-wrapper');
   if (navItems.length >= 4) {
     var homeLink = navItems[0].querySelector('a');
