@@ -31,8 +31,7 @@
         '<div class="meet-widget-bubble meet-widget-intro">hey, i’ll help u find time to meet w danica for 15 mins. what’s ur name and how wld u describe urself?</div>',
         '<form class="meet-widget-chat-form">',
           '<div class="meet-widget-input-row">',
-            '<input id="meet-widget-input" name="message" type="text" autocomplete="off" placeholder="type here…" aria-label="type your reply" required>',
-            '<button type="submit" aria-label="send reply">↑</button>',
+            '<input id="meet-widget-input" name="message" type="text" autocomplete="off" aria-label="type your reply" required>',
           '</div>',
           '<small class="meet-widget-hint"></small>',
         '</form>',
@@ -82,7 +81,7 @@
       }
       visitorIntro = reply;
       state = 'choose';
-      input.placeholder = 'type 1, 2, 3, or none…';
+      input.placeholder = '';
       showTimes('okay wait, you sound fun. i checked danica’s week — would any of these work?');
       return;
     }
@@ -101,7 +100,7 @@
       selectedSlot = slotSets[activeSet][choice - 1];
       state = 'email';
       input.type = 'email';
-      input.placeholder = 'you@email.com';
+      input.placeholder = '';
       hint.textContent = 'this sends the request straight to danica’s inbox.';
       addBotBubble('cute, ' + selectedSlot.label + ' it is. what email should danica reply to?');
       return;
@@ -118,7 +117,6 @@
   function sendRequest(email) {
     state = 'sending';
     input.disabled = true;
-    form.querySelector('button').disabled = true;
     hint.textContent = 'sending…';
     var payload = new FormData();
     payload.append('name_and_intro', visitorIntro);
@@ -143,7 +141,6 @@
     }).catch(function () {
       state = 'email';
       input.disabled = false;
-      form.querySelector('button').disabled = false;
       hint.textContent = '';
       var subject = '15 min meeting request';
       var body = 'hi danica,\n\n' + visitorIntro + '\n\nreply email: ' + email + '\nrequested time: ' + selectedSlot.value;

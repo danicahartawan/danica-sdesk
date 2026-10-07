@@ -141,6 +141,12 @@ html {
   white-space: pre-line;
 }
 
+.meet-widget-intro {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
 .meet-widget-bubble.is-user {
   margin-left: auto;
   border-radius: 1rem 1rem 0.3rem 1rem;
@@ -157,16 +163,14 @@ html {
 .meet-widget-name-form label,
 .meet-widget-email-form label { display: block; margin: 0 0 0.45rem 0.2rem; color: #777; font-size: 0.66rem; }
 .meet-widget-input-row {
-  padding: 0.4rem;
+  padding: 0.72rem 0.85rem;
   border: 1px solid rgba(20, 20, 20, 0.12);
   border-radius: 1rem;
   background: #fff;
   display: flex;
-  gap: 0.5rem;
 }
-.meet-widget-input-row input { flex: 1; min-width: 0; padding: 0 0.6rem; border: 0; outline: 0; background: transparent; }
+.meet-widget-input-row input { flex: 1; min-width: 0; padding: 0; border: 0; outline: 0; background: transparent; }
 .meet-widget-input-row input { font-size: 12px !important; }
-.meet-widget-input-row button { width: 2.6rem; height: 2.6rem; border: 0; border-radius: 0.8rem; background: #dededb; cursor: pointer; font-size: 1.2rem; }
 
 .meet-widget-chat-form { margin-top: auto; }
 .meet-widget-hint { display: block; margin: 0.4rem 0.2rem 0; color: #888; font-size: 9px; }
