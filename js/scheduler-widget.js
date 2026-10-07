@@ -1,13 +1,23 @@
 (function () {
   if (document.querySelector('.meet-widget')) return;
 
-  var slots = [
-    { label: 'wed, oct 7 · 3:30–3:45 pm', value: 'wednesday, october 7 from 3:30 to 3:45 pm pt' },
-    { label: 'thu, oct 8 · 2:00–2:15 pm', value: 'thursday, october 8 from 2:00 to 2:15 pm pt' },
-    { label: 'fri, oct 9 · 3:30–3:45 pm', value: 'friday, october 9 from 3:30 to 3:45 pm pt' }
+  var slotSets = [
+    [
+      { label: 'wed, oct 7 · 3:30–3:45 pm', value: 'wednesday, october 7 from 3:30 to 3:45 pm pt' },
+      { label: 'thu, oct 8 · 2:00–2:15 pm', value: 'thursday, october 8 from 2:00 to 2:15 pm pt' },
+      { label: 'fri, oct 9 · 3:30–3:45 pm', value: 'friday, october 9 from 3:30 to 3:45 pm pt' }
+    ],
+    [
+      { label: 'wed, oct 7 · 4:15–4:30 pm', value: 'wednesday, october 7 from 4:15 to 4:30 pm pt' },
+      { label: 'thu, oct 8 · 3:00–3:15 pm', value: 'thursday, october 8 from 3:00 to 3:15 pm pt' },
+      { label: 'fri, oct 9 · 4:00–4:15 pm', value: 'friday, october 9 from 4:00 to 4:15 pm pt' }
+    ]
   ];
   var intro = 'hey, i’ll help u find time to meet w danica for 15 mins. what’s ur name and how wld u describe urself?';
   var visitorIntro = '';
+  var selectedSlot = null;
+  var activeSet = 0;
+  var state = 'intro';
   var introPlayed = false;
 
   var widget = document.createElement('aside');
@@ -15,24 +25,23 @@
   widget.setAttribute('aria-label', 'find time with danica');
   widget.innerHTML = [
     '<button class="meet-widget-launcher" type="button" aria-expanded="false">',
-      '<span><span class="meet-widget-status"></span><span class="meet-widget-launcher-copy" aria-label="talk to me"></span><span class="meet-widget-mini-caret"></span></span>',
+      '<span><span class="meet-widget-launcher-copy" aria-label="stalk me, then talk to me"></span><span class="meet-widget-mini-caret"></span></span>',
       '<span class="meet-widget-launcher-arrow" aria-hidden="true">↗</span>',
     '</button>',
     '<section class="meet-widget-panel" aria-hidden="true">',
       '<header class="meet-widget-header">',
-        '<div><span class="meet-widget-status"></span><strong>talk to me</strong><small>berkeley, ca · 15 mins</small></div>',
+        '<div><strong>talk to me</strong><small>berkeley, ca · 15 mins</small></div>',
         '<button class="meet-widget-close" type="button" aria-label="collapse scheduling widget">−</button>',
       '</header>',
       '<div class="meet-widget-thread" aria-live="polite">',
         '<div class="meet-widget-bubble meet-widget-intro"></div>',
-        '<form class="meet-widget-name-form">',
-          '<label for="meet-widget-name">say something</label>',
+        '<form class="meet-widget-chat-form">',
           '<div class="meet-widget-input-row">',
-            '<input id="meet-widget-name" name="intro" type="text" autocomplete="off" placeholder="i’m…" required>',
-            '<button type="submit" aria-label="see available times">↑</button>',
+            '<input id="meet-widget-input" name="message" type="text" autocomplete="off" placeholder="type here…" aria-label="type your reply" required>',
+            '<button type="submit" aria-label="send reply">↑</button>',
           '</div>',
+          '<small class="meet-widget-hint"></small>',
         '</form>',
-        '<div class="meet-widget-suggestions" hidden></div>',
       '</div>',
     '</section>'
   ].join('');
@@ -42,12 +51,13 @@
   var launcherCopy = widget.querySelector('.meet-widget-launcher-copy');
   var panel = widget.querySelector('.meet-widget-panel');
   var close = widget.querySelector('.meet-widget-close');
-  var form = widget.querySelector('.meet-widget-name-form');
-  var input = widget.querySelector('#meet-widget-name');
-  var suggestions = widget.querySelector('.meet-widget-suggestions');
+  var form = widget.querySelector('.meet-widget-chat-form');
+  var input = widget.querySelector('#meet-widget-input');
+  var hint = widget.querySelector('.meet-widget-hint');
+  var thread = widget.querySelector('.meet-widget-thread');
   var introBubble = widget.querySelector('.meet-widget-intro');
 
-  playLauncherTypewriter();
+  playLauncherLoop();
 
   function setOpen(open) {
     widget.classList.toggle('is-open', open);
@@ -56,9 +66,9 @@
     if (open) {
       if (!introPlayed) {
         introPlayed = true;
-        window.setTimeout(function () { typeText(introBubble, intro, 24); }, 450);
+        window.setTimeout(function () { typeText(introBubble, intro, 34); }, 700);
       }
-      window.setTimeout(function () { input.focus(); }, 780);
+      window.setTimeout(function () { input.focus(); }, 1150);
     }
   }
 
@@ -70,108 +80,132 @@
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
-    visitorIntro = input.value.trim();
-    if (!visitorIntro) return;
-    addBubble(visitorIntro.toLowerCase(), true);
-    form.hidden = true;
-    showSlots();
+    var reply = input.value.trim();
+    if (!reply || state === 'sending' || state === 'done') return;
+    input.value = '';
+    addUserBubble(reply.toLowerCase());
+
+    if (state === 'intro') {
+      visitorIntro = reply;
+      state = 'choose';
+      input.placeholder = 'type 1, 2, 3, or none…';
+      showTimes('love that. these work with danica’s calendar:');
+      return;
+    }
+
+    if (state === 'choose') {
+      if (/none|can.?t|cannot|nope|different|reshuffle|other/.test(reply.toLowerCase())) {
+        activeSet = activeSet === 0 ? 1 : 0;
+        showTimes('all good — reshuffling. how about:');
+        return;
+      }
+      var choice = Number((reply.match(/[123]/) || [])[0]);
+      if (!choice) {
+        addBotBubble('just type 1, 2, or 3 — or say none and i’ll reshuffle :)');
+        return;
+      }
+      selectedSlot = slotSets[activeSet][choice - 1];
+      state = 'email';
+      input.type = 'email';
+      input.placeholder = 'you@email.com';
+      hint.textContent = 'this sends the request straight to danica’s inbox.';
+      addBotBubble('cute, ' + selectedSlot.label + ' it is. what email should danica reply to?');
+      return;
+    }
+
+    if (state === 'email') sendRequest(reply);
   });
 
-  function showSlots() {
-    suggestions.hidden = false;
-    suggestions.innerHTML = [
-      '<div class="meet-widget-bubble">love that. these three don’t overlap with danica’s calendar, and i kept 2–5 pm in mind:</div>',
-      '<div class="meet-widget-slot-list">',
-        slots.map(function (slot, index) {
-          return '<button class="meet-widget-slot" type="button" data-slot="' + index + '">' + slot.label + '<span>pt</span></button>';
-        }).join(''),
-      '</div>',
-      '<form class="meet-widget-email-form" hidden>',
-        '<label for="meet-widget-email">where should danica reply?</label>',
-        '<div class="meet-widget-input-row">',
-          '<input id="meet-widget-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required>',
-          '<button type="submit" aria-label="send meeting request">↑</button>',
-        '</div>',
-        '<small>this sends the request straight to danica’s inbox.</small>',
-      '</form>',
-      '<div class="meet-widget-confirmation" hidden></div>'
-    ].join('');
+  function showTimes(lead) {
+    var slots = slotSets[activeSet];
+    addBotBubble(lead + '\n\n1 — ' + slots[0].label + '\n2 — ' + slots[1].label + '\n3 — ' + slots[2].label + '\n\nnone of these? just type “none.”');
+  }
 
-    var selectedSlot = null;
-    var emailForm = suggestions.querySelector('.meet-widget-email-form');
-    suggestions.querySelectorAll('.meet-widget-slot').forEach(function (button) {
-      button.addEventListener('click', function () {
-        selectedSlot = slots[Number(button.getAttribute('data-slot'))];
-        suggestions.querySelectorAll('.meet-widget-slot').forEach(function (option) {
-          option.classList.toggle('is-selected', option === button);
-        });
-        emailForm.hidden = false;
-        emailForm.querySelector('input').focus();
-      });
-    });
+  function sendRequest(email) {
+    state = 'sending';
+    input.disabled = true;
+    form.querySelector('button').disabled = true;
+    hint.textContent = 'sending…';
+    var payload = new FormData();
+    payload.append('name_and_intro', visitorIntro);
+    payload.append('reply_email', email);
+    payload.append('_replyto', email);
+    payload.append('requested_time', selectedSlot.value);
+    payload.append('_subject', 'new 15 min meeting request from danicahartawan.work');
+    payload.append('_template', 'table');
+    payload.append('_captcha', 'false');
 
-    emailForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-      if (!selectedSlot) return;
-      var email = emailForm.querySelector('input').value.trim();
-      if (!email) return;
-
-      var button = emailForm.querySelector('button');
-      button.disabled = true;
-      button.textContent = '…';
-      var payload = new FormData();
-      payload.append('name_and_intro', visitorIntro);
-      payload.append('reply_email', email);
-      payload.append('_replyto', email);
-      payload.append('requested_time', selectedSlot.value);
-      payload.append('_subject', 'new 15 min meeting request from danicahartawan.work');
-      payload.append('_template', 'table');
-      payload.append('_captcha', 'false');
-
-      fetch('https://formsubmit.co/ajax/danicahartawan@berkeley.edu', {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: payload
-      }).then(function (response) {
-        if (!response.ok) throw new Error('request failed');
-        return response.json();
-      }).then(function () {
-        emailForm.hidden = true;
-        suggestions.querySelector('.meet-widget-slot-list').hidden = true;
-        var confirmation = suggestions.querySelector('.meet-widget-confirmation');
-        confirmation.hidden = false;
-        confirmation.innerHTML = '<div class="meet-widget-bubble">sent :) danica has your intro, email, and the time you picked.</div>';
-      }).catch(function () {
-        button.disabled = false;
-        button.textContent = '↑';
-        var subject = '15 min meeting request';
-        var body = 'hi danica,\n\n' + visitorIntro + '\n\nreply email: ' + email + '\nrequested time: ' + selectedSlot.value;
-        var confirmation = suggestions.querySelector('.meet-widget-confirmation');
-        confirmation.hidden = false;
-        confirmation.innerHTML = '<div class="meet-widget-bubble">hmm, the direct send got shy. <a href="mailto:danicahartawan@berkeley.edu?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body) + '">open the ready-to-send email instead?</a></div>';
-      });
+    fetch('https://formsubmit.co/ajax/danicahartawan@berkeley.edu', {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: payload
+    }).then(function (response) {
+      if (!response.ok) throw new Error('request failed');
+      return response.json();
+    }).then(function () {
+      state = 'done';
+      form.hidden = true;
+      addBotBubble('sent :) danica has your intro, email, and the time you picked.');
+    }).catch(function () {
+      state = 'email';
+      input.disabled = false;
+      form.querySelector('button').disabled = false;
+      hint.textContent = '';
+      var subject = '15 min meeting request';
+      var body = 'hi danica,\n\n' + visitorIntro + '\n\nreply email: ' + email + '\nrequested time: ' + selectedSlot.value;
+      addBotLink('hmm, the direct send got shy. open the ready-to-send email instead?', 'mailto:danicahartawan@berkeley.edu?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body));
     });
   }
 
-  function addBubble(content, isUser) {
+  function addUserBubble(text) {
     var bubble = document.createElement('div');
-    bubble.className = 'meet-widget-bubble' + (isUser ? ' is-user' : '');
-    bubble.textContent = content;
-    suggestions.parentNode.insertBefore(bubble, form);
+    bubble.className = 'meet-widget-bubble is-user';
+    bubble.textContent = text;
+    thread.insertBefore(bubble, form);
+    scrollThread();
   }
 
-  function playLauncherTypewriter() {
+  function addBotBubble(text) {
+    var bubble = document.createElement('div');
+    bubble.className = 'meet-widget-bubble';
+    thread.insertBefore(bubble, form);
+    typeText(bubble, text, 18, scrollThread);
+  }
+
+  function addBotLink(text, href) {
+    var bubble = document.createElement('div');
+    bubble.className = 'meet-widget-bubble';
+    var link = document.createElement('a');
+    link.href = href;
+    link.textContent = text;
+    bubble.appendChild(link);
+    thread.insertBefore(bubble, form);
+    scrollThread();
+  }
+
+  function scrollThread() {
+    thread.scrollTop = thread.scrollHeight;
+  }
+
+  function playLauncherLoop() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       launcherCopy.textContent = 'talk to me';
       return;
     }
-    typeText(launcherCopy, 'stalk me', 90, function () {
-      window.setTimeout(function () {
-        eraseText(launcherCopy, 55, function () {
-          typeText(launcherCopy, 'talk to me', 90);
-        });
-      }, 850);
-    });
+    function stalk() {
+      typeText(launcherCopy, 'stalk me', 130, function () {
+        window.setTimeout(function () {
+          eraseText(launcherCopy, 80, function () {
+            typeText(launcherCopy, 'talk to me', 130, function () {
+              window.setTimeout(function () {
+                eraseText(launcherCopy, 80, stalk);
+              }, 1700);
+            });
+          });
+        }, 1100);
+      });
+    }
+    stalk();
   }
 
   function typeText(node, text, speed, done) {
@@ -180,6 +214,7 @@
     function step() {
       index += 1;
       node.textContent = text.slice(0, index);
+      scrollThread();
       if (index < text.length) window.setTimeout(step, speed);
       else if (done) done();
     }

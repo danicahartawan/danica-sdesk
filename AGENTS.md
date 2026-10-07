@@ -58,6 +58,6 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Keep the homepage project order: Cady, Lucid, Luxo, Toko, Yarn, NVIDIA.
 - Keep the canonical URL and Open Graph/Twitter metadata pointed at `danicahartawan.work`; never reuse cloned-site titles, descriptions, icons, or preview images.
 - Keep API secrets out of client-side code. The scheduling widget uses fixed calendar-derived slots and a mailto handoff; update its slot data when Danica provides a newer calendar.
-- Keep scheduling-widget replies casual and lowercase. The compact launcher types “stalk me” then “talk to me”; the expanded panel asks for a short intro, offers 15-minute calendar-derived slots, then relays the selected request to Danica by email.
+- Keep scheduling-widget replies casual and lowercase. The compact launcher continuously types “stalk me,” erases it, then types “talk to me.” Meeting times appear in one chat bubble; visitors reply with 1, 2, or 3, and “none” reshuffles alternatives before the email relay.
 - Keep the experiment order newest/backward as: YouTube, accessible software/hardware freelance work, teaching, mentor, snowboarding, pottery, thesis.
 - Verify visual changes in the local browser before finishing.
