@@ -22,8 +22,9 @@
   widget.className = 'meet-widget';
   widget.setAttribute('aria-label', 'find time with danica');
   widget.innerHTML = [
-    '<button class="meet-widget-launcher" type="button" aria-expanded="false">',
-      '<span class="meet-widget-launcher-copy">stalk me, then talk to me</span>',
+    '<button class="meet-widget-launcher" type="button" aria-expanded="false" aria-label="stalk me, then talk to me">',
+      '<span class="meet-widget-dots" aria-hidden="true"><i></i><i></i><i></i></span>',
+      '<span class="meet-widget-launcher-copy" aria-hidden="true">stalk me, then talk to me</span>',
     '</button>',
     '<section class="meet-widget-panel" aria-hidden="true">',
       '<button class="meet-widget-close" type="button" aria-label="collapse scheduling widget">−</button>',
