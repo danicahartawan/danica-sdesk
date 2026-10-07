@@ -159,9 +159,8 @@
   function addBotBubble(text) {
     var bubble = document.createElement('div');
     bubble.className = 'meet-widget-bubble';
-    bubble.textContent = text;
     thread.insertBefore(bubble, form);
-    scrollThread();
+    typeReply(bubble, text);
   }
 
   function addBotLink(text, href) {
@@ -177,6 +176,35 @@
 
   function scrollThread() {
     thread.scrollTop = thread.scrollHeight;
+  }
+
+  function typeReply(node, text) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      node.textContent = text;
+      scrollThread();
+      return;
+    }
+
+    var index = 0;
+    input.disabled = true;
+    node.classList.add('is-typing');
+
+    function step() {
+      index += 1;
+      node.textContent = text.slice(0, index);
+      scrollThread();
+      if (index < text.length) {
+        window.setTimeout(step, 22);
+        return;
+      }
+      node.classList.remove('is-typing');
+      if (state !== 'sending' && state !== 'done') {
+        input.disabled = false;
+        input.focus();
+      }
+    }
+
+    window.setTimeout(step, 180);
   }
 
 })();
