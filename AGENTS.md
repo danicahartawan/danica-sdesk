@@ -34,7 +34,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Project cards retain their original image dimensions and use Albert Sans for captions.
 - Project headlines span the full card width; category metadata sits underneath.
 - Vertical page scrolling drives the desktop horizontal project rail.
-- Desktop project scrolling uses a compact 0.28 vertical-to-horizontal factor so the in-page About section arrives quickly.
+- Desktop project scrolling is accelerated so the in-page About section arrives without an excessively long vertical scroll.
 
 ## Important files
 
@@ -53,6 +53,6 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Do not enlarge project cards unless Danica explicitly requests it.
 - When changing a project, update its image, headline, link, and metadata together.
 - Keep the homepage project order: Cady, Lucid, Luxo, Toko, Yarn, NVIDIA.
-- Keep GitHub (`https://github.com/danicahartawan`) alongside the existing footer links.
+- Keep the canonical URL and Open Graph/Twitter metadata pointed at `danicahartawan.work`; never reuse cloned-site titles, descriptions, icons, or preview images.
 - Keep the experiment order newest/backward as: YouTube, accessible software/hardware freelance work, teaching, mentor, snowboarding, pottery, thesis.
 - Verify visual changes in the local browser before finishing.
