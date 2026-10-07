@@ -350,7 +350,7 @@
               '<div class="text-size-regular danica-about-copy">',
                 '<em class="heading-style-logo text-size-regular">Danica Hartawan</em>, Chinese-Indonesian researcher and engineer at UC Berkeley.',
                 '<br><br>',
-                'I always thought I&rsquo;d become a behavior technician - and in a way, I did (fun fact: I&rsquo;m a licensed behavior technician for autism). I&rsquo;ve long been fascinated by how people think, learn, and make decisions, and that curiosity now shapes the systems I build.',
+                'I always thought I&rsquo;d become a behavior technician - and in a way, I did (fun fact: I&rsquo;m a licensed behavior technician for autism). I&rsquo;ve long been fascinated by how people think, learn, and make decisions, and that curiosity now shapes the systems I build. Definitely a lifelong learner as well&mdash;always looking for something to humble me!',
                 '<br><br>',
                 '<div class="danica-recently">',
                   '<div class="danica-recently-label">Recently</div>',
