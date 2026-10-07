@@ -58,6 +58,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - When changing a project, update its image, headline, link, and metadata together.
 - Keep the homepage project order: Cady, Lucid, Luxo, Toko, Yarn, NVIDIA.
 - Keep the canonical URL and Open Graph/Twitter metadata pointed at `danicahartawan.work`; never reuse cloned-site titles, descriptions, icons, or preview images.
+- Keep the document, Open Graph, and Twitter title exactly `Danica's desk`.
 - Keep API secrets out of client-side code. The scheduling widget uses fixed calendar-derived slots and a mailto handoff; update its slot data when Danica provides a newer calendar.
 - Keep scheduling-widget replies casual and lowercase. The compact launcher enters from below as a right-facing speech bubble with three animated typing dots, then expands on hover or focus to reveal “stalk me, then talk to me.” The expanded widget has no header bar, no send-arrow button, and no “type here” placeholder. Conversational replies type in gently. Meeting times appear in one chat bubble; visitors press Enter to reply with 1, 2, or 3, and “none” reshuffles alternatives before the email relay.
 - Never use em dashes in scheduling-widget conversation copy.

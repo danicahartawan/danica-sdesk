@@ -1,5 +1,5 @@
 (function () {
-  document.title = "danica's desk";
+  document.title = "Danica's desk";
   document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]').forEach(function (icon) {
     icon.remove();
   });
