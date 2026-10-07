@@ -187,6 +187,7 @@
     tabIndicator.innerHTML = '<span class="filter-tab-dot"></span>';
     filterNav.appendChild(tabIndicator);
     var activeCategoryFilter = projectFilter;
+    var categoryIsSwitching = false;
 
     function moveTabIndicator(activeFilter, shouldBounce) {
       if (!activeFilter) return;
@@ -201,15 +202,60 @@
     }
 
     function showCategory(category, activeFilter) {
-      document.querySelectorAll('.currently-list [data-category]').forEach(function (item) {
+      if (categoryIsSwitching || activeFilter === activeCategoryFilter) return;
+
+      var items = Array.from(document.querySelectorAll('.currently-list [data-category]'));
+      var outgoing = items.filter(function (item) { return !item.classList.contains('is-hidden'); });
+      var incoming = items.filter(function (item) {
         var categories = (item.getAttribute('data-category') || '').split(' ');
-        item.classList.toggle('is-hidden', categories.indexOf(category) === -1);
+        return categories.indexOf(category) !== -1;
       });
+
       projectFilter.classList.toggle('text-color-alternate', activeFilter !== projectFilter);
       experimentFilter.classList.toggle('text-color-alternate', activeFilter !== experimentFilter);
       activeCategoryFilter = activeFilter;
       moveTabIndicator(activeFilter, true);
-      window.dispatchEvent(new Event('resize'));
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        items.forEach(function (item) {
+          var categories = (item.getAttribute('data-category') || '').split(' ');
+          item.classList.toggle('is-hidden', categories.indexOf(category) === -1);
+        });
+        window.dispatchEvent(new Event('resize'));
+        return;
+      }
+
+      categoryIsSwitching = true;
+      outgoing.forEach(function (item, index) {
+        item.style.setProperty('--tile-delay', (index * 35) + 'ms');
+        item.classList.add('is-switching-out');
+      });
+
+      window.setTimeout(function () {
+        outgoing.forEach(function (item) {
+          item.classList.add('is-hidden');
+          item.classList.remove('is-switching-out');
+          item.style.removeProperty('--tile-delay');
+        });
+
+        incoming.forEach(function (item, index) {
+          item.style.setProperty('--tile-delay', (index * 45) + 'ms');
+          item.classList.add('is-switching-in');
+          item.classList.remove('is-hidden');
+        });
+
+        rail.scrollLeft = 0;
+        window.dispatchEvent(new Event('resize'));
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () {
+            incoming.forEach(function (item) { item.classList.remove('is-switching-in'); });
+            window.setTimeout(function () {
+              incoming.forEach(function (item) { item.style.removeProperty('--tile-delay'); });
+              categoryIsSwitching = false;
+            }, 720);
+          });
+        });
+      }, 620);
     }
 
     document.addEventListener('click', function (event) {
