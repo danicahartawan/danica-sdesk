@@ -32,6 +32,16 @@
     homeLink.setAttribute('href', '/');
     aboutLink.textContent = 'ABOUT';
     aboutLink.setAttribute('href', document.querySelector('.currently-list-wrapper') ? '#about' : 'index.html#about');
+
+    // Add quick scroll to about section
+    aboutLink.addEventListener('click', function(e) {
+      var aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        e.preventDefault();
+        aboutSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    });
+
     agentsLink.textContent = 'AGENTS.TXT';
     agentsLink.setAttribute('href', 'AGENTS.txt');
     agentsLink.className = 'nav-link text-subline is-agents';
@@ -145,7 +155,7 @@
     {
       name: 'Yarn',
       description: 'I built Yarn with 40+ Berkeley Journalism students, exploring the intersection of local AI and physical + digital research notes.',
-      media: 'assets/projects/yarn.mp4',
+      media: '/Users/danicahartawan/Downloads/yarn.mp4',
       poster: 'assets/projects/yarn-poster.jpg',
       scope: ['JOURNALISTS']
     },
