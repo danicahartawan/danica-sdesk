@@ -358,6 +358,10 @@
 
   var experiments = [
     {
+      caption: 'Recently got into making my own journals',
+      image: 'assets/experiments/journals.jpg'
+    },
+    {
       caption: 'YouTube channel!',
       image: 'assets/experiments/youtube-poster.jpg'
     },
