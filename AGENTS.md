@@ -43,6 +43,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - `css/project-rail.css` — portfolio-specific layout, typography, desk-object placement, card captions, and responsive behavior.
 - `js/project-rail.js` — navigation customization, Berkeley clock, filters, and horizontal scrolling.
 - `js/desk-decor.js` — desk-object markup and reveal behavior.
+- `js/scheduler-widget.js` — expandable meeting widget and the three calendar-derived suggestion slots.
 - `assets/desk/` — desk-object images.
 - `assets/danica-about-photo.png` — portrait used in the homepage About section and legacy About page.
 - `assets/projects/` — optimized project demos and poster frames for Cady, Lucid, Luxo, Toko, Yarn, and NVIDIA.
@@ -56,5 +57,6 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - When changing a project, update its image, headline, link, and metadata together.
 - Keep the homepage project order: Cady, Lucid, Luxo, Toko, Yarn, NVIDIA.
 - Keep the canonical URL and Open Graph/Twitter metadata pointed at `danicahartawan.work`; never reuse cloned-site titles, descriptions, icons, or preview images.
+- Keep API secrets out of client-side code. The scheduling widget uses fixed calendar-derived slots and a mailto handoff; update its slot data when Danica provides a newer calendar.
 - Keep the experiment order newest/backward as: YouTube, accessible software/hardware freelance work, teaching, mentor, snowboarding, pottery, thesis.
 - Verify visual changes in the local browser before finishing.
