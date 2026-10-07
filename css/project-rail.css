@@ -58,8 +58,8 @@ html {
   width: max-content;
   max-width: calc(100vw - 2.5rem);
   box-sizing: border-box;
-  min-height: 2.5rem;
-  padding: 0.55rem 0.85rem;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.05rem;
   border: 1px solid rgba(20, 20, 20, 0.12);
   border-radius: 0.85rem;
   background: rgba(255, 255, 255, 0.94);
@@ -69,9 +69,22 @@ html {
   justify-content: flex-start;
   cursor: pointer;
   backdrop-filter: blur(14px);
+  animation: meet-widget-pop 0.72s 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 
-.meet-widget-launcher-copy { font-size: 0.72rem; white-space: nowrap; }
+.meet-widget-launcher:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 1rem 2.5rem rgba(20, 20, 20, 0.14);
+}
+
+.meet-widget-launcher-copy { font-size: 0.8rem; white-space: nowrap; }
+
+@keyframes meet-widget-pop {
+  0% { opacity: 0; transform: translateY(0.8rem) scale(0.88); }
+  72% { opacity: 1; transform: translateY(-0.12rem) scale(1.025); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 .meet-widget-launcher > span:first-child { display: flex; align-items: center; gap: 0.5rem; }
 
@@ -216,6 +229,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .meet-widget-launcher { animation: none; transition: none; }
   .meet-widget-panel { transition: none; }
 }
 
