@@ -26,11 +26,14 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 
 - Preserve the compact editorial character of the layout.
 - Keep the intro typography at its current scale; avoid oversized text and excessive whitespace.
-- Use the display typeface selectively for Danica's name and emphasized phrases.
+- Use the display typeface selectively for the hero name and emphasized phrases. Keep “Danica Hartawan” in the About paragraph in the same font as the surrounding body copy.
+- Preserve the short typewriter introduction on the first hero line, including the display typeface for Danica's name and reduced-motion fallback.
 - Keep desk objects grouped along the outer edges so the intro remains readable.
 - Keep the pen in the lower-left desk cluster and the watch in the upper-left cluster, outside the intro copy.
 - Keep Nudge and the watch together in the upper-left desk cluster, and keep the folder toward the right edge without overlapping AirDrop.
 - Keep inactive project/experiment cards out of the horizontal scroll range.
+- When switching PROJECTS and EXPERIMENTS, fade and drift the outgoing cards away before revealing the incoming cards with a gentle stagger. Preserve the reduced-motion fallback.
+- Preserve the small blue indicator beneath PROJECTS/EXPERIMENTS; it slides to the active tab and bounces once, with a reduced-motion fallback.
 - Project cards retain their original image dimensions and use Albert Sans for captions.
 - Project headlines span the full card width; category metadata sits underneath.
 - Vertical page scrolling drives the desktop horizontal project rail.
@@ -41,9 +44,10 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - `css/project-rail.css` — portfolio-specific layout, typography, desk-object placement, card captions, and responsive behavior.
 - `js/project-rail.js` — navigation customization, Berkeley clock, filters, and horizontal scrolling.
 - `js/desk-decor.js` — desk-object markup and reveal behavior.
+- `js/scheduler-widget.js` — expandable meeting widget and the three calendar-derived suggestion slots.
 - `assets/desk/` — desk-object images.
 - `assets/danica-about-photo.png` — portrait used in the homepage About section and legacy About page.
-- `assets/projects/` — optimized project demos and poster frames for Cady, Lucid, Luxo, Toko, Yarn, and NVIDIA.
+- `assets/projects/` — optimized project demos and poster frames for Cady, Lucid, Luxo, Toko, Moldable, Yarn, and NVIDIA.
 - `assets/experiments/` — optimized personal experiment imagery plus the YouTube demo and poster.
 
 ## Editing guidelines
@@ -52,6 +56,12 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Keep the center of the intro clear of decorative objects.
 - Do not enlarge project cards unless Danica explicitly requests it.
 - When changing a project, update its image, headline, link, and metadata together.
-- Keep the homepage project order: Cady, Lucid, Luxo, Toko, Yarn, NVIDIA.
-- Keep the experiment order newest/backward as: YouTube, accessible software/hardware freelance work, teaching, mentor, snowboarding, pottery, thesis.
+- Keep the homepage project order: Cady, Lucid, Luxo, Toko, Moldable, Yarn, NVIDIA.
+- Keep the canonical URL and Open Graph/Twitter metadata pointed at `danicahartawan.work`; never reuse cloned-site titles, descriptions, icons, or preview images.
+- Keep the document, Open Graph, and Twitter title exactly `Danica's desk`.
+- Keep API secrets out of client-side code. The scheduling widget uses fixed calendar-derived slots and a mailto handoff; update its slot data when Danica provides a newer calendar.
+- Keep scheduling-widget replies casual and lowercase. The compact launcher enters from below as a right-facing speech bubble with three animated typing dots, then expands on hover or focus to reveal “stalk me, then talk to me.” The expanded widget has no header bar, no send-arrow button, and no “type here” placeholder. Conversational replies type in gently. Meeting times appear in one chat bubble; visitors press Enter to reply with 1, 2, or 3, and “none” reshuffles alternatives before the email relay.
+- Never use em dashes in scheduling-widget conversation copy.
+- Keep the collapsed widget thin and text-only. Its expanded state grows sideways into a short rectangle rather than vertically into a tall chat window.
+- Keep the experiment order newest/backward as: handmade journals, YouTube, accessible software/hardware freelance work, teaching, mentor, snowboarding, pottery, thesis.
 - Verify visual changes in the local browser before finishing.

@@ -310,6 +310,13 @@
       scope: ['STARTUPS']
     },
     {
+      name: 'Moldable',
+      description: "Moldable is a way to preserve grandma's recipe and adapt it abroad.",
+      media: 'assets/projects/moldable.mp4',
+      poster: 'assets/projects/moldable-poster.jpg',
+      scope: ['MY GRANDMA']
+    },
+    {
       name: 'Yarn',
       description: 'I built Yarn with 40+ Berkeley Journalism students, exploring the intersection of local AI and physical + digital research notes.',
       media: 'assets/projects/yarn.mp4',

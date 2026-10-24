@@ -47,7 +47,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - `js/scheduler-widget.js` — expandable meeting widget and the three calendar-derived suggestion slots.
 - `assets/desk/` — desk-object images.
 - `assets/danica-about-photo.png` — portrait used in the homepage About section and legacy About page.
-- `assets/projects/` — optimized project demos and poster frames for Cady, Lucid, Luxo, Toko, Yarn, and NVIDIA.
+- `assets/projects/` — optimized project demos and poster frames for Cady, Lucid, Luxo, Toko, Moldable, Yarn, and NVIDIA.
 - `assets/experiments/` — optimized personal experiment imagery plus the YouTube demo and poster.
 
 ## Editing guidelines
@@ -56,7 +56,7 @@ Treat this as living documentation. Whenever the portfolio's structure, navigati
 - Keep the center of the intro clear of decorative objects.
 - Do not enlarge project cards unless Danica explicitly requests it.
 - When changing a project, update its image, headline, link, and metadata together.
-- Keep the homepage project order: Cady, Lucid, Luxo, Toko, Yarn, NVIDIA.
+- Keep the homepage project order: Cady, Lucid, Luxo, Toko, Moldable, Yarn, NVIDIA.
 - Keep the canonical URL and Open Graph/Twitter metadata pointed at `danicahartawan.work`; never reuse cloned-site titles, descriptions, icons, or preview images.
 - Keep the document, Open Graph, and Twitter title exactly `Danica's desk`.
 - Keep API secrets out of client-side code. The scheduling widget uses fixed calendar-derived slots and a mailto handoff; update its slot data when Danica provides a newer calendar.
