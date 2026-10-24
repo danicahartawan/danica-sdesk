@@ -290,6 +290,13 @@
       className: 'is-cady'
     },
     {
+      name: 'Moldable',
+      description: "Moldable is a way to preserve grandma's recipe and adapt it abroad.",
+      media: 'assets/projects/moldable.mp4',
+      poster: 'assets/projects/moldable-poster.jpg',
+      scope: ['MY GRANDMA']
+    },
+    {
       name: 'Lucid',
       description: 'At Lucid Motors, I deployed an internal long-running research tool in three weeks.',
       media: 'assets/projects/lucid.mp4',
@@ -308,13 +315,6 @@
       description: 'I built Toko for 4+ startups to create visual technical documentation and triage customer support.',
       image: 'assets/projects/toko.png',
       scope: ['STARTUPS']
-    },
-    {
-      name: 'Moldable',
-      description: "Moldable is a way to preserve grandma's recipe and adapt it abroad.",
-      media: 'assets/projects/moldable.mp4',
-      poster: 'assets/projects/moldable-poster.jpg',
-      scope: ['MY GRANDMA']
     },
     {
       name: 'Yarn',
